@@ -6,12 +6,17 @@
   src: url("../../fonts/Oswald-Regular.ttf");
 }
 
+nav{
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 #nav {
   width: 100%;
   float: left;
-  padding: 0;
   list-style: none;
   background-color: #C4C4C4;
+  margin-bottom: 1px !important;
 
   li {
     float: left;
@@ -26,7 +31,7 @@
     }
     img {
       height: 48px;
-      padding: 3px 10px 0 30px;
+      padding: 3px 10px 0 0px;
     }
 
   }

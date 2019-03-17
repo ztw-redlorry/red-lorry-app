@@ -1,6 +1,8 @@
 import './Map.scss';
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import './Map.scss'
+
 
 class Map extends React.Component {
     render() {
