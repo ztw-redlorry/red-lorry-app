@@ -3,6 +3,9 @@
   border-radius: 5px; }
 
 .addOrder {
-  margin-left: auto; }
+  width: 40px;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px; }
 
 /*# sourceMappingURL=OrdersColumn.css.map */
