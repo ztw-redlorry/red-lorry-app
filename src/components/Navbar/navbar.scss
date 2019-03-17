@@ -1,0 +1,41 @@
+@font-face {
+  font-family: Oswald;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  src: url("../../fonts/Oswald-Regular.ttf");
+}
+
+#nav {
+  width: 100%;
+  float: left;
+  padding: 0;
+  list-style: none;
+  background-color: #C4C4C4;
+
+  li {
+    float: left;
+    a{
+      font-family: Oswald, serif;
+      display: block;
+      padding: 10px 0;
+      text-decoration: none;
+      font-size: x-large;
+      font-weight: bold;
+      color: #B3404A;
+    }
+    img {
+      height: 48px;
+      padding: 3px 10px 0 30px;
+    }
+
+  }
+  li:last-child{
+    float: right;
+    .logOut{
+      height: 45px;
+      padding: 10px 25px;
+      margin-top: 5px;
+    }
+  }
+}
