@@ -1,0 +1,37 @@
+@font-face {
+  font-family: Oswald;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  src: url("../../fonts/Oswald-Regular.ttf"); }
+nav {
+  padding: 0 !important;
+  margin-bottom: 0 !important; }
+
+#nav {
+  width: 100%;
+  float: left;
+  list-style: none;
+  background-color: #C4C4C4;
+  margin-bottom: 1px !important; }
+  #nav li {
+    float: left; }
+    #nav li a {
+      font-family: Oswald, serif;
+      display: block;
+      padding: 10px 0;
+      text-decoration: none;
+      font-size: x-large;
+      font-weight: bold;
+      color: #B3404A; }
+    #nav li img {
+      height: 48px;
+      padding: 3px 10px 0 0px; }
+  #nav li:last-child {
+    float: right; }
+    #nav li:last-child .logOut {
+      height: 45px;
+      padding: 10px 25px;
+      margin-top: 5px; }
+
+/*# sourceMappingURL=navbar.css.map */

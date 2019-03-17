@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,IAAK;EACH,KAAK,EAAE,eAAe;EAAE,4BAA4B;EACpD,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;;AAGd,IAAK;EACH,KAAK,EAAE,eAAe;EAAE,4BAA4B;EACpD,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;;AAGd,gBAAgB;EACd,MAAM,EAAC,IAAI",
+"sources": ["PanelScreen.scss"],
+"names": [],
+"file": "PanelScreen.css"
+}

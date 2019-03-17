@@ -1,10 +1,10 @@
 .orderTile {
-  width: 300px;
   background-color: #C4C4C4;
   padding: 10px;
   margin: 8px;
   border-radius: 5px;
-  font-size: 18px; }
+  font-size: 18px;
+  max-width: 100%; }
 
 .orderName {
   font-size: 16px; }
