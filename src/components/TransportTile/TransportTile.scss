@@ -1,0 +1,20 @@
+.transportTile {
+  width: 300px;
+  background-color: #C4C4C4;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.transportName {
+  font-size: 16px;
+}
+.transportDetails {
+  display: flex;
+}
+.transportRoute {
+  margin-right: auto;
+}
+.handledOrders {
+  margin-left: auto;
+}

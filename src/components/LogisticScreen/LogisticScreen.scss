@@ -1,0 +1,14 @@
+.col-sm-6{
+  height: 100% !important;
+}
+.logisticScreenHeader {
+  background-color: #E5E5E5;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  font-size: 18px;
+  display: flex;
+  .title {
+    flex: 1 1 0;
+    text-align: center;
+  }
+}

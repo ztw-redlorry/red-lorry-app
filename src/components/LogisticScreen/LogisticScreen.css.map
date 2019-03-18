@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,SAAS;EACP,MAAM,EAAE,eAAe",
+"sources": ["LogisticScreen.scss"],
+"names": [],
+"file": "LogisticScreen.css"
+}
