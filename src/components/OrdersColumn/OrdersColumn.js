@@ -17,10 +17,6 @@ class OrdersColumn extends Component{
                 <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
                 <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
                 <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <Button onclick={props.onAddChild.bind(this)}></Button>
-                <div id="children-pane">
-                    {props.children}
-                </div>
                 <img className={'addOrder' } src={plus}/>
             </div>
         )
