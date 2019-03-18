@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,sBAAsB;AACtB,UAAW;EACT,MAAM,EAAE,MAAM;EACd,KAAK,EAAE,IAAI",
+"sources": ["MapScreen.scss"],
+"names": [],
+"file": "MapScreen.css"
+}
