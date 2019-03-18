@@ -1,0 +1,18 @@
+.transportColumn {
+  background-color: #E5E5E5;
+  border-radius: 4px;
+  max-width: 100%;
+  padding-top: 1px;
+  height: 90vh;
+  overflow-y: scroll;
+}
+.addTransport {
+  width: 40px;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.addTransport:hover {
+  background-color: white;
+  border-radius: 20px;
+}
