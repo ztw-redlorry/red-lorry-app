@@ -3,6 +3,7 @@ import OrderColumn from '../OrdersColumn/OrdersColumn.js'
 import {Col, Row, Container} from "react-bootstrap";
 import './LogisticScreen.scss'
 import TransportColumn from "../TransportColumn/TransportColumn";
+import OrderTile from "../OrderTile/OrderTile";
 
 
 class LogisticScreen extends Component {
