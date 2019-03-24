@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import OrderColumn from '../OrdersColumn/OrdersColumn.js'
+import OrderColumn from '../../containers/OrdersColumn/OrdersColumn.js'
 import {Col, Row, Container} from "react-bootstrap";
 import './LogisticScreen.scss'
-import TransportColumn from "../TransportColumn/TransportColumn";
-import OrderTile from "../OrderTile/OrderTile";
+import TransportColumn from "../../containers/TransportColumn/TransportColumn";
 
 
 class LogisticScreen extends Component {

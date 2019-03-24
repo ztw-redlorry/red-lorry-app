@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './OrdersColumn.scss';
-import OrderTile from "../OrderTile/OrderTile";
+import OrderTile from "../../components/OrderTile/OrderTile";
 import plus from '../../plus.png';
 import Button from "react-bootstrap/Button";
-import LogisticScreen from "../LogisticScreen/LogisticScreen";
+import LogisticScreen from "../../components/LogisticScreen/LogisticScreen";
 
 
 class OrdersColumn extends Component{
