@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './OrderTile.scss';
+import Button from "react-bootstrap/Button";
 
 class OrderTile extends Component {
     render() {

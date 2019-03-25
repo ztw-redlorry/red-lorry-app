@@ -1,45 +1,66 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './OrdersColumn.scss';
 import OrderTile from "../../components/OrderTile/OrderTile";
 import plus from '../../plus.png';
+import OrderInputTile from "../../components/OrderInputTile/OrderInputTile";
 import Button from "react-bootstrap/Button";
 import LogisticScreen from "../../components/LogisticScreen/LogisticScreen";
 
 
-class OrdersColumn extends Component{
-    constructor () {
-        super()
-        // LOOK MORE WHAT 'this' means!! <- the key of javascript = execution context
-
-        this.renderOrder = this.renderOrder.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+class OrdersColumn extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            orders: [],
+        }
     }
-
-    renderOrder(){
-        // carefull!!! bar is undefined. Look more what 'this' means in javascript
-        return (
-            <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-        );
-    }
-
-    handleClick() {
-        this.renderOrder();
-    }
+    handleCreateOrderInput = () => {
+        console.log("asdasdasd");
+        const newElement = {
+            orderNumber: '144231',
+            pointFrom: 'Katowice',
+            pointTo: 'Poznań',
+            amount: '200'
+        };
+        this.setState(state => {
+            const orders = [...state.orders, newElement];
+            return {
+                orders
+            };
+        });
+    };
+    handleConfirmOrder = (order) => {
+        this.setState(state => {
+            const orders = [...state.orders, order];
+            return {
+                orders
+            };
+        });
+    };
+    renderOrders = () => {
+        const orders = this.state.orders;
+        return orders.map(({ orderNumber, pointFrom, pointTo, amount }) => (
+            <OrderTile
+                key={orderNumber}
+                id={orderNumber}
+                orderNumber={orderNumber}
+                pointFrom={pointFrom}
+                pointTo={pointTo}
+                amount={amount}
+            >
+            </OrderTile>
+        ));
+    };
 
     render() {
-        const renderOrder = this.renderOrder();
         return (
             <div className={'ordersColumn'}>
-                <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <OrderTile orderNumber={3} pointFrom={'Katowice'} pointTo={'Bytom'} amount={100}/>
-                <img className={'addOrder' } src={plus}/>
+                {this.renderOrders()}
+                <OrderInputTile onClick={this.handleConfirmOrder}/>
+                <img className={'addOrder'} src={plus} onClick={this.handleCreateOrderInput}/>
             </div>
         )
     }
 }
+
 export default OrdersColumn;
