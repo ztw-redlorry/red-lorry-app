@@ -5,7 +5,7 @@ import LogisticScreen from "../PanelScreen/PanelScreen";
 class TransportCapacity extends Component {
     render () {
         return (
-            <div>asd</div>
+            <div></div>
         );
     }
 }
