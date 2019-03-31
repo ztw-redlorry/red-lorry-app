@@ -65,7 +65,7 @@ class OrderInputTile extends Component {
                     />
                 </InputGroup>
 
-                <Button variant={'light'} onClick={this.handleConfirm}>Add Order</Button>
+                <Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Order</Button>
                 <Button variant={'light'} onClick={() => this.props.onCancel()}>Cancel Order</Button>
             </Form>
         )
