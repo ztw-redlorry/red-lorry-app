@@ -1,0 +1,28 @@
+USE RedLorry;
+
+INSERT INTO magazyn(magMiasto, magLokalizacja)
+VALUES ('Waraszawa', '52.2319237, 21.0067265');
+INSERT INTO magazyn(magMiasto, magLokalizacja)
+VALUES ('Wrocław', '51.1089776, 17.0326689');
+
+INSERT INTO zamowienie(zamIloscTowaru, zamTermin, magIdStart, magIdKoniec)
+VALUES (2, '2019-04-12', 1, 2);
+INSERT INTO zamowienie(zamIloscTowaru, zamTermin, magIdStart, magIdKoniec)
+VALUES (2, '2019-04-16', 2, 1);
+
+INSERT INTO pojazd(pojLadownosc)
+VALUES (10);
+
+INSERT INTO transport(traTermin, traAkceptacja, pojId)
+VALUES ('2019-04-16', 0, 1);
+
+SELECT z.zamId, z.zamIloscTowaru, z.zamTermin, ms.magMiasto, mk.magMiasto AS miasto powrotne
+FROM RedLorry.zamowienie AS z, RedLorry.magazyn AS ms, RedLorry.magazyn AS mk
+WHERE z.magIdStart = ms.magId AND z.magIdKoniec = mk.magId;
+
+SELECT z.zamId, z.zamIloscTowaru, z.zamTermin, ms.magMiasto AS miasto1, mk.magMiasto AS miasto2
+FROM zamowienie AS z
+JOIN magazyn AS ms ON z.magIdStart = ms.magId
+JOIN magazyn AS mk ON z.magIdKoniec = mk.magId;
+
+
