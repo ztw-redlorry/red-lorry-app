@@ -1,0 +1,14 @@
+.ordersColumn {
+  background-color: #E5E5E5;
+  border-radius: 4px;
+  max-width: 100%;
+  padding-top: 1px;
+  height: 100%; }
+
+.addOrder {
+  width: 40px;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px; }
+
+/*# sourceMappingURL=OrdersColumn.module.cssule.css.map */
