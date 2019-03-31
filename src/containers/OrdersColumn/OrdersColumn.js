@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './OrdersColumn.scss';
+import classes from './OrdersColumn.module.scss';
 import OrderTile from "../../components/OrderTile/OrderTile";
 import plus from '../../plus.png';
 import OrderInputTile from "../../components/OrderInputTile/OrderInputTile";
@@ -12,28 +12,22 @@ class OrdersColumn extends Component {
         super(props);
         this.state = {
             orders: [],
+            isInputActive: false
         }
     }
     handleCreateOrderInput = () => {
-        console.log("asdasdasd");
-        const newElement = {
-            orderNumber: '144231',
-            pointFrom: 'Katowice',
-            pointTo: 'Poznań',
-            amount: '200'
-        };
-        this.setState(state => {
-            const orders = [...state.orders, newElement];
-            return {
-                orders
-            };
-        });
+        this.setState({isInputActive: true});
+    };
+    handleCancelOrder = () => {
+        console.log("cancel");
+        this.setState({isInputActive: false});
     };
     handleConfirmOrder = (order) => {
         this.setState(state => {
             const orders = [...state.orders, order];
             return {
-                orders
+                orders,
+                isInputActive: false
             };
         });
     };
@@ -51,13 +45,21 @@ class OrdersColumn extends Component {
             </OrderTile>
         ));
     };
+    renderInput = () => {
+        const isInputActive = this.state.isInputActive;
+        if (isInputActive) {
+            return (
+                <OrderInputTile orderNumber={this.state.orders.length+1} onConfirm={this.handleConfirmOrder} onCancel={() => this.handleCancelOrder()}/>
+            )
+        }
+    };
 
     render() {
         return (
-            <div className={'ordersColumn'}>
+            <div className={classes.ordersColumn}>
                 {this.renderOrders()}
-                <OrderInputTile onClick={this.handleConfirmOrder}/>
-                <img className={'addOrder'} src={plus} onClick={this.handleCreateOrderInput}/>
+                {this.renderInput()}
+                <img className={classes.addOrder} src={plus} onClick={this.handleCreateOrderInput}/>
             </div>
         )
     }

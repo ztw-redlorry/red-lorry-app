@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-//import './OrderInputTile.scss';
+import classes from './OrderInputTile.module.scss';
 import Button from "react-bootstrap/Button";
+import {Form, InputGroup} from "react-bootstrap";
 
 class OrderInputTile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderNumber: '',
+            orderNumber: this.props.orderNumber,
             pointFrom: '',
             pointTo: '',
             amount: ''
         };
+        // this.onCancel= this.onCancel.bind(this);
+        // this.onConfirm= this.onConfirm.bind(this);
     }
     onChangeValue = event => {
         console.log('a1111');
@@ -24,41 +27,47 @@ class OrderInputTile extends Component {
             this.setState({ amount: event.target.value });
         }
     };
+
     handleConfirm = () => {
-        this.props.onClick(this.state);
+        this.props.onConfirm(this.state);
     };
     render() {
         return (
-            <div className={'orderTile'}>
-                <div className={'orderName'}>
+            <Form className={classes.orderInputTile}>
+                <div className={classes.orderName}>
                     Zamówienie <span>{this.props.orderNumber}</span>
                 </div>
-                <div className={'orderRoute'}>
-                    <input
-                        type={'text'}
+                <InputGroup size="lg" className={classes.orderRoute}>
+                    <InputGroup.Text>From:</InputGroup.Text>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter start point"
                         name={'pointFrom'}
                         value={this.state.pointFrom}
                         onChange={this.onChangeValue}
                     />
-                    -
-                    <input
+                    <InputGroup.Text>To:</InputGroup.Text>
+                    <Form.Control
                         type={'text'}
+                        placeholder={"Enter end point"}
                         name={'pointTo'}
                         value={this.state.pointTo}
                         onChange={this.onChangeValue}
                     />
-                </div>
-                <div className={'orderAmount'}>
-                    Sztuk:
-                    <input
+                </InputGroup>
+                <InputGroup className={classes.orderAmount}>
+                    <InputGroup.Text>Ilość sztuk:</InputGroup.Text>
+                    <Form.Control
                         type={'text'}
                         name={'amount'}
                         value={this.state.amount}
                         onChange={this.onChangeValue}
                     />
-                </div>
+                </InputGroup>
+
                 <Button variant={'light'} onClick={this.handleConfirm}>Add Order</Button>
-            </div>
+                <Button variant={'light'} onClick={() => this.props.onCancel()}>Cancel Order</Button>
+            </Form>
         )
     }
 }
