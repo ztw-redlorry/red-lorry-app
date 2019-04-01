@@ -7,13 +7,13 @@ class OrderTile extends Component {
         return (
             <div className={'orderTile'}>
                 <div className={'orderName'}>
-                    Zamówienie <span>{this.props.zamId}</span>
+                    Zamówienie <span>{this.props.orderNumber}</span>
                 </div>
                 <div className={'orderRoute'}>
-                    {this.props.miastoStart} - {this.props.miastoKoniec}
+                    {this.props.pointFrom} - {this.props.pointTo}
                 </div>
                 <div className={'orderAmount'}>
-                    Sztuk: {this.props.zamIloscTowaru}
+                    Sztuk: {this.props.amount}
                 </div>
             </div>
         )

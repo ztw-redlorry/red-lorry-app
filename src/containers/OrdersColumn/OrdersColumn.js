@@ -15,6 +15,25 @@ class OrdersColumn extends Component {
             isInputActive: false
         }
     }
+    componentDidMount() {
+        axios.get('http://localhost:3000/orders')
+            .then(
+                (result) => {
+                    console.log(result.data);
+                    this.setState({
+                        isLoaded: true,
+                        orders: result.data
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+
+    }
     handleCreateOrderInput = () => {
         this.setState({isInputActive: true});
     };

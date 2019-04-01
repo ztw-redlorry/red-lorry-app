@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
-import './OrdersColumn.scss';
+import classes from './OrdersColumn.module.scss';
 import OrderTile from "../../components/OrderTile/OrderTile";
 import plus from '../../plus.png';
+import axios from 'axios'
 import OrderInputTile from "../../components/OrderInputTile/OrderInputTile";
-import axios from "axios";
+import Button from "react-bootstrap/Button";
+import LogisticScreen from "../../components/LogisticScreen/LogisticScreen";
+
 
 class OrdersColumn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: null,
-            isLoaded: false,
-            orders: []
+            orders: [],
+            isInputActive: false
         }
     }
-
     componentDidMount() {
         axios.get('http://localhost:3000/orders')
             .then(
@@ -34,86 +35,26 @@ class OrdersColumn extends Component {
             )
 
     }
-
-    /*response.data.forEach(function(entry) {
-                  const zamId = Math.floor(Math.random() * 100);
-                  const newElement = {
-                      zamId: zamId,
-                      miastoStart: entry['miastoStart'],
-                      miastoKoniec: entry['miastoKoniec'],
-                      zamIloscTowaru: entry['zamIloscTowaru']
-                  };
-                  console.log(newElement);
-                  this.setState(state => {
-                      const orders = [...state.orders, newElement];
-                      return {
-                          orders
-                      };
-                  });
-              });*/
-/*
-
-    componentDidMount() {
-        axios.get('http://localhost:3000/orders')
-            .then(res => this.setState({ data: res.data }))
-            .catch(err => console.log(err));
-    }
-*/
-
-   /* componentDidMount() {
-        axios.get('http://localhost:3000/orders')
-            .then(function (response) {
-                response.data.forEach(function(entry) {
-                    const zamId = Math.floor(Math.random() * 100);
-                    const newElement = {
-                        zamId: zamId,
-                        miastoStart: entry['miastoStart'],
-                        miastoKoniec: entry['miastoKoniec'],
-                        zamIloscTowaru: entry['zamIloscTowaru']
-                    };
-                    console.log(newElement);
-                    this.setState(state => {
-                        const orders = [...state.orders, newElement];
-                        return {
-                            orders
-                        };
-                    });
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    }*/
-
     handleCreateOrderInput = () => {
-        console.log("asdasdasd");
-        const newElement = {
-            zamId: '144231',
-            miastoStart: 'Katowice',
-            miastoKoniec: 'Poznań',
-            zamIloscTowaru: '200'
-        };
-        this.setState(state => {
-            const orders = [...state.orders, newElement];
-            return {
-                orders
-            };
-        });
+        this.setState({isInputActive: true});
     };
-
+    handleCancelOrder = () => {
+        console.log("cancel");
+        this.setState({isInputActive: false});
+    };
     handleConfirmOrder = (order) => {
         this.setState(state => {
             const orders = [...state.orders, order];
             return {
-                orders
+                orders,
+                isInputActive: false
             };
         });
     };
-
     renderOrders = () => {
         const orders = this.state.orders;
-        console.log("Order = "+orders.length);
-        return orders.map(({ zamId: zamId, miastoStart: miastoStart, miastoKoniec, zamIloscTowaru }) => (
+        console.log("Order = " + orders.length);
+        return orders.map(({zamId, miastoStart, miastoKoniec, zamIloscTowaru}) => (
             <OrderTile
                 key={zamId}
                 id={zamId}
@@ -123,15 +64,24 @@ class OrdersColumn extends Component {
                 amount={zamIloscTowaru}
             >
             </OrderTile>
-    ));
+        ));
+    };
+
+    renderInput = () => {
+        const isInputActive = this.state.isInputActive;
+        if (isInputActive) {
+            return (
+                <OrderInputTile orderNumber={this.state.orders.length+1} onConfirm={this.handleConfirmOrder} onCancel={() => this.handleCancelOrder()}/>
+            )
+        }
     };
 
     render() {
         return (
-            <div className={'ordersColumn'}>
+            <div className={classes.ordersColumn}>
                 {this.renderOrders()}
-                <OrderInputTile onClick={this.handleConfirmOrder}/>
-                <img className={'addOrder'} src={plus} onClick={this.handleCreateOrderInput}/>
+                {this.renderInput()}
+                <img className={classes.addOrder} src={plus} onClick={this.handleCreateOrderInput}/>
             </div>
         )
     }
