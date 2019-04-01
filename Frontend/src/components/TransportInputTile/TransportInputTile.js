@@ -2,74 +2,97 @@ import React, { Component } from 'react';
 import classes from './TransportInputTile.module.scss';
 import Button from "react-bootstrap/Button";
 import {Form, InputGroup} from "react-bootstrap";
+import axios from 'axios'
+import OrderTile from "../../containers/OrdersColumn/OrdersColumn";
 
-class OrderInputTile extends Component {
+class TransportInputTile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderNumber: this.props.orderNumber,
-            pointFrom: '',
-            pointTo: '',
-            amount: ''
+            selectedOrder: {},
+            handledOrders: [],
+            availableOrders:[],
+            route: [],
         };
-        // this.onCancel= this.onCancel.bind(this);
-        // this.onConfirm= this.onConfirm.bind(this);
     }
-    onChangeValue = event => {
-        console.log('a1111');
-        if (event.target.name === 'pointFrom') {
-            this.setState({ pointFrom: event.target.value });
-        }
-        if (event.target.name === 'pointTo') {
-            this.setState({ pointTo: event.target.value });
-        }
-        if (event.target.name === 'amount') {
-            this.setState({ amount: event.target.value });
-        }
-    };
 
+    componentDidMount() {
+        axios.get('http://localhost:3000/orders')
+            .then(
+                (result) => {
+                    console.log(result.data);
+                    this.setState({
+                        isLoaded: true,
+                        availableOrders: result.data
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+
+    }
+    renderHandledOrders = () => {
+        const handledOrders = this.state.handledOrders;
+        console.log("handledOrders length = " + handledOrders.length);
+        return handledOrders.map(({zamId, miastoStart, miastoKoniec}) => (
+            <div>{zamId}: {miastoStart} - {miastoKoniec} </div>
+        ));
+    };
+    createSelectItems() {
+        let items = [];
+        for (let i = 0; i < this.state.availableOrders.length; i++) {
+            items.push(<option key={i} value={this.state.availableOrders[i].zamId}>{'Zamówienie nr ' + this.state.availableOrders[i].zamId}</option>);
+            //here I will be creating my options dynamically based on
+            //what props are currently passed to the parent component
+        }
+        return items;
+    }
+    onDropdownSelected = (e) => {
+        console.log("THE VAL", e.target.value);
+        console.log('availableOrders: ' + this.state.availableOrders);
+        var selectedOrder = this.state.availableOrders.find(obj => {
+            console.log("obj: " + obj.zamId);
+            console.log("e.target.value: " + e.target.value);
+            return obj.zamId == e.target.value
+        });
+        console.log("sel or:" + selectedOrder.zamId);
+        console.log("selectedOrder before set: ", this.state.selectedOrder);
+        this.setState({ selectedOrder: selectedOrder}, () => {
+            console.log("selectedOrder after set: ", this.state.selectedOrder);
+        });
+        //here you will see the current selected value of the select input
+    };
+    handleAddingOrder = () => {
+        this.setState(state => {
+            const selectedOrder = this.state.selectedOrder;
+            const handledOrders = [...state.handledOrders, selectedOrder];
+            const availableOrders = state.availableOrders.filter(order => order !== selectedOrder);
+            return {
+                handledOrders,
+                availableOrders
+            };
+        });
+    };
     handleConfirm = () => {
         this.props.onConfirm(this.state);
     };
     render() {
         return (
             <Form className={classes.orderInputTile}>
-                <div className={classes.orderName}>
-                    Zamówienie <span>{this.props.orderNumber}</span>
-                </div>
-                <InputGroup size="lg" className={classes.orderRoute}>
-                    <InputGroup.Text>From:</InputGroup.Text>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter start point"
-                        name={'pointFrom'}
-                        value={this.state.pointFrom}
-                        onChange={this.onChangeValue}
-                    />
-                    <InputGroup.Text>To:</InputGroup.Text>
-                    <Form.Control
-                        type={'text'}
-                        placeholder={"Enter end point"}
-                        name={'pointTo'}
-                        value={this.state.pointTo}
-                        onChange={this.onChangeValue}
-                    />
-                </InputGroup>
-                <InputGroup className={classes.orderAmount}>
-                    <InputGroup.Text>Ilość sztuk:</InputGroup.Text>
-                    <Form.Control
-                        type={'text'}
-                        name={'amount'}
-                        value={this.state.amount}
-                        onChange={this.onChangeValue}
-                    />
-                </InputGroup>
-
-                <Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Order</Button>
-                <Button variant={'light'} onClick={() => this.props.onCancel()}>Cancel Order</Button>
+                {this.renderHandledOrders()}
+                <Form.Control as="select" onChange={this.onDropdownSelected}>
+                    {this.createSelectItems()}
+                </Form.Control>
+                <Button variant={'light'} onClick={this.handleAddingOrder}>Add Order</Button>
+                <Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Transport</Button>
+                <Button variant={'light'} onClick={() => this.props.onCancel()}>Cancel Transport</Button>
             </Form>
         )
     }
 }
 
-export default OrderInputTile;
+export default TransportInputTile;
