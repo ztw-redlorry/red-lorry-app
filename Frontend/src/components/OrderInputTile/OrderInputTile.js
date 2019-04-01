@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import classes from './OrderInputTile.module.scss';
 import Button from "react-bootstrap/Button";
 import {Form, InputGroup} from "react-bootstrap";
+import axios from 'axios'
+
 
 class OrderInputTile extends Component {
     constructor(props) {
@@ -30,7 +32,13 @@ class OrderInputTile extends Component {
 
     handleConfirm = () => {
         this.props.onConfirm(this.state);
+        const url = 'http://localhost:3000/orders';
+        axios.post(url, this.state)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     };
+
+
     render() {
         return (
             <Form className={classes.orderInputTile}>

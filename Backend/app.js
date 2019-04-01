@@ -4,6 +4,8 @@ var path = require('path');
 var cors = require('cors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,6 +14,16 @@ var transportRouter = require('./routes/transports');
 
 
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+/*
+// Access the parse results as request.body
+app.post('/ordersPost', function(request, response){
+    console.log(request.body);
+});
+*/
 
 app.use(cors());
 
