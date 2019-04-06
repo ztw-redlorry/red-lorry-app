@@ -38,14 +38,14 @@ class TransportInputTile extends Component {
     renderHandledOrders = () => {
         const handledOrders = this.state.handledOrders;
         console.log("handledOrders length = " + handledOrders.length);
-        return handledOrders.map(({zamId, miastoStart, miastoKoniec}) => (
-            <div>{zamId}: {miastoStart} - {miastoKoniec} </div>
+        return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
+            <div>{orderNumber}: {pointFrom} - {pointTo} </div>
         ));
     };
     createSelectItems() {
         let items = [];
         for (let i = 0; i < this.state.availableOrders.length; i++) {
-            items.push(<option key={i} value={this.state.availableOrders[i].zamId}>{'Zamówienie nr ' + this.state.availableOrders[i].zamId}</option>);
+            items.push(<option key={i} value={this.state.availableOrders[i].orderNumber}>{'Zamówienie nr ' + this.state.availableOrders[i].orderNumber}</option>);
             //here I will be creating my options dynamically based on
             //what props are currently passed to the parent component
         }
@@ -55,11 +55,11 @@ class TransportInputTile extends Component {
         console.log("THE VAL", e.target.value);
         console.log('availableOrders: ' + this.state.availableOrders);
         var selectedOrder = this.state.availableOrders.find(obj => {
-            console.log("obj: " + obj.zamId);
+            console.log("obj: " + obj.orderNumber);
             console.log("e.target.value: " + e.target.value);
-            return obj.zamId == e.target.value
+            return obj.orderNumber == e.target.value
         });
-        console.log("sel or:" + selectedOrder.zamId);
+        console.log("sel or:" + selectedOrder.orderNumber);
         console.log("selectedOrder before set: ", this.state.selectedOrder);
         this.setState({ selectedOrder: selectedOrder}, () => {
             console.log("selectedOrder after set: ", this.state.selectedOrder);
