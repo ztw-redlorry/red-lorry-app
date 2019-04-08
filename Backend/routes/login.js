@@ -12,6 +12,7 @@ router.post('/', function(request, response) {
             if (results.length > 0) {
                 request.session.loggedin = true;
                 request.session.username = username;
+                response.send('logged in');
                 //response.redirect('/');
             } else {
                 response.send('Incorrect Username and/or Password!');

@@ -62,7 +62,7 @@ class TransportColumn extends Component{
     render() {
         return (
             <div className={classes.transportColumn}>
-                <TransportTile transportNumber={3} transportRoute={['Katowice', 'Bytom', 'Sosnowiec']} handledOrders={['Zamówienie 1']}/>
+                {/*<TransportTile transportNumber={3} transportRoute={['Katowice', 'Bytom', 'Sosnowiec']} handledOrders={['Zamówienie 1']}/>*/}
                 {this.renderTransports()}
                 {this.renderInput()}
                 <img className={classes.addTransport} src={plus} onClick={this.handleCreateOrderInput}/>
