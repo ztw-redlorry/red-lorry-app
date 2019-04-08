@@ -1,16 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './navbar.scss'
 import {Navbar} from "react-bootstrap"
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 
-class NavBar extends React.Component{
+class NavBar extends React.Component {
     render() {
         return (
             <Navbar>
                 <ul id="nav">
-                    <li><img src={require('../../images/logo.svg')}/></li>
-                    <li><a href="#">RedLorry</a></li>
-                    <li><img className={"logOut"} src={require('../../images/logOut.svg')}/></li>
+                    <li>
+                        <Link to="/">
+                            <img src={require('../../images/logo.svg')}/>
+                        </Link>
+                    </li>
+                    <li className='logoText'>RedLorry</li>
+                    <li>
+                        <Link to="/login">
+                            <img className={"logOut"} src={require('../../images/logOut.svg')}/>
+                        </Link>
+                    </li>
                 </ul>
             </Navbar>
         );
