@@ -4,6 +4,7 @@ import plus from '../../plus.png';
 import TransportTile from "../../components/TransportTile/TransportTile";
 import classes from "../TransportColumn/TransportColumn.module.scss";
 import TransportInputTile from "../../components/TransportInputTile/TransportInputTile";
+import axios from "axios";
 
 class TransportColumn extends Component{
     constructor(props) {
@@ -12,6 +13,22 @@ class TransportColumn extends Component{
             transports: [],
             isInputActive: false
         }
+    }
+    componentDidMount() {
+        axios.get('http://localhost:3000/orders')
+            .then(
+                (result) => {
+                    console.log(result.data);
+                    this.setState({
+                        transports: result.data
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        error
+                    });
+                }
+            )
     }
     handleCreateOrderInput = () => {
         this.setState({isInputActive: true});
