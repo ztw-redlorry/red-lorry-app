@@ -3,20 +3,21 @@ var router = express.Router();
 var connection = require('./connection');
 
 router.get('/',(req, res) => {
-    connection.query("SELECT z.zamId AS orderNumber, CONVERT(CAST(ms.magMiasto AS BINARY) USING utf8) AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount FROM zamowienie AS z JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId;",(err, result) => {
+    const SELECT = 'SELECT z.zamId AS orderNumber, ms.magMiasto AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount ';
+    const FROM = 'FROM zamowienie AS z ';
+    const JOIN = 'JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId; ';
+    const SQL = SELECT + FROM + JOIN;
+    connection.query(SQL,(err, result) => {
         if(err) {
-            console.log(err);
             res.json({"error":true});
         }
         else {
-            console.log(result);
-            res.header("Content-Type", "application/json; charset=utf-8");
             res.json(result);
         }
     });
 });
 
-router.post('/', function(request, response){
+router.post('/', function(request){
     const pointFrom = request.body.pointFrom;
     const pointTo = request.body.pointTo;
     const amount = request.body.amount;
@@ -29,7 +30,7 @@ router.post('/', function(request, response){
             magMiasto = JSON.parse(JSON.stringify(result));
             const magId = getId(magMiasto, pointFrom, pointTo);
             const sql = "INSERT INTO zamowienie(zamIloscTowaru, zamTermin, traId, magIdStart, magIdKoniec) VALUES ("+amount+", '2018-7-04', '1', "+magId[0]+", "+magId[1]+")";
-            connection.query(sql, function (err, result) {
+            connection.query(sql, function (err) {
                 if (err) throw err;
                 console.log("1 record inserted");
             });
