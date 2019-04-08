@@ -15,7 +15,7 @@ class TransportColumn extends Component{
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:3000/orders')
+        axios.get('http://localhost:3000/transports')
             .then(
                 (result) => {
                     console.log(result.data);
