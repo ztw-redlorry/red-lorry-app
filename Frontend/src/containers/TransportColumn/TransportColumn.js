@@ -5,6 +5,7 @@ import TransportTile from "../../components/TransportTile/TransportTile";
 import classes from "../TransportColumn/TransportColumn.module.scss";
 import TransportInputTile from "../../components/TransportInputTile/TransportInputTile";
 import axios from "axios";
+import OrderTile from "../OrdersColumn/OrdersColumn";
 
 class TransportColumn extends Component{
     constructor(props) {
@@ -30,6 +31,18 @@ class TransportColumn extends Component{
                 }
             )
     }
+    renderTransports = () => {
+        const transports = this.state.transports;
+        console.log("Transport = " + transports.length);
+        return transports.map(({transportNumber, transportRoute, handledOrders}) => (
+            <TransportTile
+                transportNumber={transportNumber}
+                transportRoute={transportRoute}
+                handledOrders={handledOrders}
+            >
+            </TransportTile>
+        ))
+    };
     handleCreateOrderInput = () => {
         this.setState({isInputActive: true});
     };
@@ -50,6 +63,7 @@ class TransportColumn extends Component{
         return (
             <div className={classes.transportColumn}>
                 <TransportTile transportNumber={3} transportRoute={['Katowice', 'Bytom', 'Sosnowiec']} handledOrders={['Zamówienie 1']}/>
+                {this.renderTransports()}
                 {this.renderInput()}
                 <img className={classes.addTransport} src={plus} onClick={this.handleCreateOrderInput}/>
             </div>
