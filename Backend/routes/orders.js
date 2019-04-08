@@ -22,10 +22,12 @@ router.get('/',(req, res) => {
 });
 
 router.post('/', function(request, response){
+    console.log(request.body);
+
     const point = request.body.pointFrom;
-    const magId = getMagId(point, connection);
-    magId.then(console.log(magId));
-   /*
+   /* const magId = getMagId(point, connection);
+    magId.then(console.log(magId));*/
+   let magId = null;
     connection.query("SELECT magId FROM magazyn WHERE magMiasto = '"+point+"';",(err, result) => {
         if(err) {
             console.log(err);
@@ -34,11 +36,10 @@ router.post('/', function(request, response){
         else {
             const usersRows = JSON.parse(JSON.stringify(result));
             magId = usersRows[0].magId;
+
             return usersRows[0].magId;
         }
     });
-    */
-
 
  /*   console.log(point);
     getMagId({point}, (magId) => { console.log(magId) });*/
