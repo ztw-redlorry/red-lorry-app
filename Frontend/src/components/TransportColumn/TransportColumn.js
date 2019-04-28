@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './TransportColumn.module.scss';
 import plus from '../../plus.png';
 import TransportTile from "../../components/TransportTile/TransportTile";
-import classes from "../TransportColumn/TransportColumn.module.scss";
+import classes from ".//TransportColumn.module.scss";
 import TransportInputTile from "../../components/TransportInputTile/TransportInputTile";
 import axios from "axios";
 

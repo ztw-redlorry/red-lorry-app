@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import classes from './OrdersColumn.module.scss';
-import OrderTile from "../../components/OrderTile/OrderTile";
+import OrderTile from "../OrderTile/OrderTile";
 import plus from '../../plus.png';
 import axios from 'axios';
-import OrderInputTile from "../../components/OrderInputTile/OrderInputTile";
+import OrderInputTile from "../OrderInputTile/OrderInputTile";
 import Button from "react-bootstrap/Button";
-import LogisticScreen from "../../components/LogisticScreen/LogisticScreen";
+import LogisticScreen from "../LogisticScreen/LogisticScreen";
 
 
 class OrdersColumn extends Component {
@@ -78,8 +78,8 @@ class OrdersColumn extends Component {
     render() {
         return (
             <div className={classes.ordersColumn}>
-                {this.renderOrders()}
-                {this.renderInput()}
+                {this.renderOrders}
+                {this.renderInput}
                 <img className={classes.addOrder} src={plus} onClick={this.handleCreateOrderInput}/>
             </div>
         )

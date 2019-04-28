@@ -21,13 +21,6 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-/*
-// Access the parse results as request.body
-app.post('/ordersPost', function(request, response){
-    console.log(request.body);
-});
-*/
-
 app.use(cors());
 
 // view engine setup
@@ -41,10 +34,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
+  name: '_es_demo', // The name of the cookie
   secret: 'secret',
   resave: true,
   saveUninitialized: true
 }));
+
+app.get('*', function(req,res,next){
+
+  console.log(req.cookies);
+
+  next();
+
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

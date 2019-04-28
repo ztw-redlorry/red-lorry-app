@@ -3,7 +3,7 @@ import classes from './TransportInputTile.module.scss';
 import Button from "react-bootstrap/Button";
 import {Form, InputGroup} from "react-bootstrap";
 import axios from 'axios'
-import OrderTile from "../../containers/OrdersColumn/OrdersColumn";
+import OrderTile from "../OrdersColumn/OrdersColumn";
 
 class TransportInputTile extends Component {
     constructor(props) {

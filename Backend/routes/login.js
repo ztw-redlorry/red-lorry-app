@@ -3,6 +3,13 @@ var router = express.Router();
 var connection = require('./connection');
 const utf8 = require('utf8');
 
+router.get('/',(req,res) => {
+    sess = req.session;
+    if(sess.email) {
+        return res.send('hohohooh');
+    }
+});
+
 router.post('/', function(request, response) {
     var username = request.body.username;
     var password = request.body.password;
@@ -11,8 +18,10 @@ router.post('/', function(request, response) {
         connection.query('SELECT * FROM uzytkownik WHERE uzyLogin = ? AND uzyHaslo = ?', [username, password], function(error, results, fields) {
             if (results.length > 0) {
                 request.session.loggedin = true;
-                request.session.username = username;
+                request.session.user = username;
                 //response.redirect('/');
+                response.send('Logged in');
+
             } else {
                 response.send('Incorrect Username and/or Password!');
             }

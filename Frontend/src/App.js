@@ -4,19 +4,21 @@ import './App.scss';
 import NavBar from './components/Navbar/NavBar'
 import PanelScreen from "./components/PanelScreen/PanelScreen";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
+import { withCookies } from 'react-cookie';
 
 class App extends Component {
     render() {
         return (
-            <Router>
-                <div className="App">
-                    <NavBar/>
-                    <Route exact path="/" component={PanelScreen}/>
-                    <Route exact path="/login" component={LoginScreen}/>
-                </div>
-            </Router>
+                <Router>
+                    <div className="App">
+                        <NavBar/>
+                        <Route exact path="/" render={() => (<PanelScreen cookies={this.props.cookies}/>)}/>
+                        <Route exact path="/login" component={LoginScreen}/>
+                    </div>
+                </Router>
+
         );
     }
 }
 
-export default App;
+export default withCookies(App);

@@ -3,19 +3,25 @@ var router = express.Router();
 var connection = require('./connection');
 const utf8 = require('utf8');
 
-/* GET users listing. */
 router.get('/',(req, res) => {
-    connection.query("SELECT z.zamId AS orderNumber, CONVERT(CAST(ms.magMiasto AS BINARY) USING utf8) AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount FROM zamowienie AS z JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId;",(err, result) => {
-        if(err) {
-            console.log(err);
-            res.json({"error":true});
-        }
-        else {
-            console.log(result);
-            res.header("Content-Type", "application/json; charset=utf-8");
-            res.json(result);
-        }
-    });
+    if (req.session.loggedin) {
+        console.log("isloggedin");
+        connection.query("SELECT z.zamId AS orderNumber, CONVERT(CAST(ms.magMiasto AS BINARY) USING utf8) AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount FROM zamowienie AS z JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId;", (err, result) => {
+            if (err) {
+                console.log(err);
+                res.json({"error": true});
+            } else {
+                console.log(result);
+                res.header("Content-Type", "application/json; charset=utf-8");
+                res.json(result);
+            }
+        });
+        res.end();
+    }
+    else {
+        res.send('Please login to view this page!');
+        res.end();
+    }
 });
 
 router.post('/', function(request, response){
