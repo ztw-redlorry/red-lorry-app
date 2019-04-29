@@ -22,7 +22,6 @@ router.post('/', function(request){
     const pointTo = request.body.pointTo;
     const amount = request.body.amount;
     const deadline = request.body.deadline;
-    console.log(deadline)
     let magMiasto = null;
     connection.query("SELECT magId, magMiasto FROM magazyn;",(err, result) => {
         if (err) {
@@ -37,6 +36,14 @@ router.post('/', function(request){
                 console.log("1 record inserted");
             });
         }
+    });
+});
+
+router.delete('/',(req, res) => {
+    console.log(req.body);
+    connection.query('DELETE FROM `zamowienie` WHERE `zamId`=?', [req.body.id], function (error, results, fields) {
+        if (error) throw error;
+        res.end('Record has been deleted!');
     });
 });
 

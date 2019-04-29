@@ -33,12 +33,10 @@ function mergeRows(result){
             mergedResult = result[i];
             mergedResult["transportRoute"] = [result[i]["transportRoute"]];
             mergedResult["handledOrders"] = [result[i]["handledOrders"]];
-
         }
         else{
             mergedResult["transportRoute"].push(result[i]["transportRoute"]);
             mergedResult["handledOrders"].push(result[i]["handledOrders"]);
-
         }
     }
     console.log("mergedResult = "+mergedResult["transportRoute"]);
