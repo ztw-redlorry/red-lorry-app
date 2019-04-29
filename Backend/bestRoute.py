@@ -93,6 +93,5 @@ def calculate(orders,maxload):
 
 if __name__ == '__main__':
     (orders,maxload) = load_from_json(argv[1])
-    print(orders)
     (points,distance) = calculate(orders,maxload)
     print(encode_to_json(points,distance))

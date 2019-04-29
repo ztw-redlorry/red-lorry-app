@@ -3,16 +3,17 @@ import classes from './TransportInputTile.module.scss';
 import Button from "react-bootstrap/Button";
 import {Form, InputGroup} from "react-bootstrap";
 import axios from 'axios'
-import OrderTile from "../../containers/OrdersColumn/OrdersColumn";
+import OrderTile from "../OrdersColumn/OrdersColumn";
 
 class TransportInputTile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            distance: 0,
             selectedOrder: {},
+            transportRoute: [],
             handledOrders: [],
             availableOrders:[],
-            route: [],
         };
     }
 
@@ -35,9 +36,20 @@ class TransportInputTile extends Component {
             )
 
     }
+    getBestRoute = () => {
+        const handledOrders = this.state.handledOrders;
+        console.log(handledOrders);
+
+        axios.get('http://localhost:3000/bestRoute', {
+            params: {
+                handledOrders: handledOrders
+            }})
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    };
     renderHandledOrders = () => {
         const handledOrders = this.state.handledOrders;
-        console.log("handledOrders length = " + handledOrders.length);
+        console.log(handledOrders);
         return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
             <div>{orderNumber}: {pointFrom} - {pointTo} </div>
         ));
@@ -88,7 +100,8 @@ class TransportInputTile extends Component {
                     {this.createSelectItems()}
                 </Form.Control>
                 <Button variant={'light'} onClick={this.handleAddingOrder}>Add Order</Button>
-                <Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Transport</Button>
+                {/*<Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Transport</Button>*/}
+                <Button variant={'light'} onClick={this.getBestRoute}>Add Transport</Button>
                 <Button variant={'light'} onClick={() => this.props.onCancel()}>Cancel Transport</Button>
             </Form>
         )

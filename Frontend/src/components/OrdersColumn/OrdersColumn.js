@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import classes from './OrdersColumn.module.scss';
-import OrderTile from "../../components/OrderTile/OrderTile";
+import OrderTile from "../OrderTile/OrderTile";
 import plus from '../../plus.png';
-import OrderInputTile from "../../components/OrderInputTile/OrderInputTile";
+import axios from 'axios';
+import OrderInputTile from "../OrderInputTile/OrderInputTile";
 import Button from "react-bootstrap/Button";
-import LogisticScreen from "../../components/LogisticScreen/LogisticScreen";
+import LogisticScreen from "../LogisticScreen/LogisticScreen";
 
 
 class OrdersColumn extends Component {
@@ -32,7 +33,6 @@ class OrdersColumn extends Component {
                     });
                 }
             )
-
     }
     handleCreateOrderInput = () => {
         this.setState({isInputActive: true});
@@ -52,7 +52,8 @@ class OrdersColumn extends Component {
     };
     renderOrders = () => {
         const orders = this.state.orders;
-        return orders.map(({ orderNumber, pointFrom, pointTo, amount }) => (
+        console.log("Order = " + orders.length);
+        return orders.map(({orderNumber, pointFrom, pointTo, amount}) => (
             <OrderTile
                 key={orderNumber}
                 id={orderNumber}
@@ -64,6 +65,7 @@ class OrdersColumn extends Component {
             </OrderTile>
         ));
     };
+
     renderInput = () => {
         const isInputActive = this.state.isInputActive;
         if (isInputActive) {

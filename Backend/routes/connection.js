@@ -8,7 +8,7 @@ var pool = mysql.createPool({
     password : '1YD5qFO_',
     database : '28168376_redlorry',
     charset: "utf8",
-    timeout  : 60 * 60 * 1000,
+    timeout  : 60 * 60 * 100000,
 });
 
 pool.getConnection(function(err) {
