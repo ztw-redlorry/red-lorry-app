@@ -53,7 +53,7 @@ class OrdersColumn extends Component {
     renderOrders = () => {
         const orders = this.state.orders;
         console.log("Order = " + orders.length);
-        return orders.map(({orderNumber, pointFrom, pointTo, amount}) => (
+        return orders.map(({orderNumber, pointFrom, pointTo, amount, deadline}) => (
             <OrderTile
                 key={orderNumber}
                 id={orderNumber}
@@ -61,6 +61,7 @@ class OrdersColumn extends Component {
                 pointFrom={pointFrom}
                 pointTo={pointTo}
                 amount={amount}
+                deadline={deadline}
             >
             </OrderTile>
         ));

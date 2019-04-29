@@ -3,7 +3,7 @@ var router = express.Router();
 var connection = require('./connection');
 
 router.get('/',(req, res) => {
-    const SELECT = 'SELECT z.zamId AS orderNumber, ms.magMiasto AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount ';
+    const SELECT = 'SELECT z.zamId AS orderNumber, ms.magMiasto AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount, z.zamTermin as deadline ';
     const FROM = 'FROM zamowienie AS z ';
     const JOIN = 'JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId; ';
     const SQL = SELECT + FROM + JOIN;
@@ -21,6 +21,8 @@ router.post('/', function(request){
     const pointFrom = request.body.pointFrom;
     const pointTo = request.body.pointTo;
     const amount = request.body.amount;
+    const deadline = request.body.deadline;
+    console.log(deadline)
     let magMiasto = null;
     connection.query("SELECT magId, magMiasto FROM magazyn;",(err, result) => {
         if (err) {

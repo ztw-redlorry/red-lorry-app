@@ -13,7 +13,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ordersRouter = require('./routes/orders');
 var transportRouter = require('./routes/transports');
-var loginRouter = require('./routes/login');
+// var loginRouter = require('./routes/login');
 
 
 var app = express();
@@ -50,7 +50,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/orders', ordersRouter);
 app.use('/transports', transportRouter);
-app.use('/login', loginRouter);
+//app.use('/login', loginRouter);
 
 
 

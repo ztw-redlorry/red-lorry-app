@@ -15,6 +15,9 @@ class OrderTile extends Component {
                 <div className={'orderAmount'}>
                     Sztuk: {this.props.amount}
                 </div>
+                <div className={'deadline'}>
+                    Data: {this.props.deadline}
+                </div>
             </div>
         )
     }
