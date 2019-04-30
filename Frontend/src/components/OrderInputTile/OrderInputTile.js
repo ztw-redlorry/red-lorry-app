@@ -37,11 +37,7 @@ class OrderInputTile extends Component {
             this.setState({ deadline: event.target.value });
         }
     };
-    handleChange = date => {
-        this.setState({
-            deadline: date
-        });
-    };
+
     handleConfirm = () => {
         this.props.onConfirm(this.state);
         const url = 'http://localhost:3000/orders';
@@ -53,7 +49,7 @@ class OrderInputTile extends Component {
         return (
             <Form className={classes.orderInputTile}>
                 <div className={classes.orderName}>
-                    Zamówienie <span>{this.props.orderNumber}</span>
+                    Zamówienie
                 </div>
                 <InputGroup size="lg" className={classes.orderRoute}>
                     <InputGroup.Text>From:</InputGroup.Text>
@@ -84,11 +80,11 @@ class OrderInputTile extends Component {
                 </InputGroup>
                 <InputGroup>
                     <InputGroup.Text>Deadline:</InputGroup.Text>
-                    <DatePicker
-                        className={classes.deadline}
-                        placeholderText="Click to select a date"
-                        selected={this.state.deadline}
-                        onChange={this.handleChange}
+                    <Form.Control
+                        type={'text'}
+                        name={'deadline'}
+                        value={this.state.deadline}
+                        onChange={this.onChangeValue}
                     />
                 </InputGroup>
                 <Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Order</Button>

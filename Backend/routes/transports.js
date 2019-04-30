@@ -25,6 +25,16 @@ router.get('/',(req, res) => {
     })
 });
 
+
+router.delete('/',(req, res) => {
+    console.log(req.body);
+    connection.query('DELETE FROM `transport` WHERE `traId`=?', [req.body.id], function (error, results, fields) {
+        if (error) throw error;
+        console.log('Record has been deleted!');
+        res.end('Record has been deleted!');
+    });
+});
+
 function mergeRows(result){
     let mergedResult = [];
     //console.log(result);

@@ -22,6 +22,7 @@ router.post('/', function(request){
     const pointTo = request.body.pointTo;
     const amount = request.body.amount;
     const deadline = request.body.deadline;
+    console.log("Deadline = ", deadline);
     let magMiasto = null;
     connection.query("SELECT magId, magMiasto FROM magazyn;",(err, result) => {
         if (err) {
@@ -30,7 +31,8 @@ router.post('/', function(request){
         } else {
             magMiasto = JSON.parse(JSON.stringify(result));
             const magId = getId(magMiasto, pointFrom, pointTo);
-            const sql = "INSERT INTO zamowienie(zamIloscTowaru, zamTermin, traId, magIdStart, magIdKoniec) VALUES ("+amount+", '2018-7-04', '1', "+magId[0]+", "+magId[1]+")";
+            const sql = "INSERT INTO zamowienie(zamIloscTowaru, zamTermin, traId, magIdStart, magIdKoniec) VALUES ("+amount+", '"+deadline+"', '1', "+magId[0]+", "+magId[1]+")";
+            console.log(sql);
             connection.query(sql, function (err) {
                 if (err) throw err;
                 console.log("1 record inserted");

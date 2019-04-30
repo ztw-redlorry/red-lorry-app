@@ -18,6 +18,7 @@ class OrderTile extends Component {
                     Sztuk: {this.props.amount}
                 </div>
                 <div className={'deadline'}>
+                    {console.log(this.props.deadline)}
                     Data: {this.props.deadline}
                 </div>
                 <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.orderNumber)}>Delete</Button>

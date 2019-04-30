@@ -9,6 +9,7 @@ class TransportInputTile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isSelected: false,
             selectedOrder: {},
             handledOrders: [],
             availableOrders:[],
@@ -23,7 +24,8 @@ class TransportInputTile extends Component {
                     console.log(result.data);
                     this.setState({
                         isLoaded: true,
-                        availableOrders: result.data
+                        availableOrders: result.data,
+                        selectedOrder: result.data[0]
                     });
                 },
                 (error) => {
@@ -32,18 +34,20 @@ class TransportInputTile extends Component {
                         error
                     });
                 }
-            )
+            );
 
     }
     renderHandledOrders = () => {
         const handledOrders = this.state.handledOrders;
         console.log("handledOrders length = " + handledOrders.length);
+
         return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
             <div>{orderNumber}: {pointFrom} - {pointTo} </div>
         ));
     };
     createSelectItems() {
         let items = [];
+
         for (let i = 0; i < this.state.availableOrders.length; i++) {
             items.push(<option key={i} value={this.state.availableOrders[i].orderNumber}>{'Zamówienie nr ' + this.state.availableOrders[i].orderNumber}</option>);
             //here I will be creating my options dynamically based on
@@ -59,6 +63,7 @@ class TransportInputTile extends Component {
             console.log("e.target.value: " + e.target.value);
             return obj.orderNumber == e.target.value
         });
+        this.setState({isSelected: true});
         console.log("sel or:" + selectedOrder.orderNumber);
         console.log("selectedOrder before set: ", this.state.selectedOrder);
         this.setState({ selectedOrder: selectedOrder}, () => {
@@ -67,15 +72,31 @@ class TransportInputTile extends Component {
         //here you will see the current selected value of the select input
     };
     handleAddingOrder = () => {
-        this.setState(state => {
-            const selectedOrder = this.state.selectedOrder;
-            const handledOrders = [...state.handledOrders, selectedOrder];
-            const availableOrders = state.availableOrders.filter(order => order !== selectedOrder);
-            return {
-                handledOrders,
-                availableOrders
-            };
-        });
+        console.log("Selected Order = ", this.state.selectedOrder.orderNumber);
+        if(this.state.isSelected){
+            this.setState(state => {
+                const selectedOrder = this.state.selectedOrder;
+                const handledOrders = [...state.handledOrders, selectedOrder];
+                const availableOrders = state.availableOrders.filter(order => order !== selectedOrder);
+                return {
+                    handledOrders,
+                    availableOrders
+                };
+            });
+            this.setState({isSelected: false});
+        }
+        else{
+            this.setState(state => {
+                const selectedOrder = this.state.availableOrders[0];
+                const handledOrders = [...state.handledOrders, selectedOrder];
+                const availableOrders = state.availableOrders.filter(order => order !== selectedOrder);
+                return {
+                    handledOrders,
+                    availableOrders
+                };
+            });
+            this.setState({isSelected: false});
+        }
     };
     handleConfirm = () => {
         this.props.onConfirm(this.state);
@@ -84,8 +105,10 @@ class TransportInputTile extends Component {
         return (
             <Form className={classes.orderInputTile}>
                 {this.renderHandledOrders()}
-                <Form.Control as="select" onChange={this.onDropdownSelected}>
-                    {this.createSelectItems()}
+                <Form.Control
+                    as="select" onChange={this.onDropdownSelected}>
+                    {this.createSelectItems()
+                    }
                 </Form.Control>
                 <Button variant={'light'} onClick={this.handleAddingOrder}>Add Order</Button>
                 <Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Transport</Button>
