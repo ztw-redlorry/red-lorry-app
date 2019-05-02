@@ -56,7 +56,7 @@ class TransportInputTile extends Component {
     renderTransportRoute = () => {
         const transportRoute = this.state.transportRoute;
         return transportRoute.map((routePoint) => (
-            <div>{routePoint.pointName}</div>
+            <div>-{routePoint.pointName}     <span>Załadowanie: {routePoint.load}</span></div>
         ))
     };
     renderHandledOrders = () => {
@@ -108,9 +108,9 @@ class TransportInputTile extends Component {
     render() {
         return (
             <Form className={classes.orderInputTile}>
-                <div>Handled Orders:</div>
+                <div>Obsługiwane zamówienia:</div>
                 {this.renderHandledOrders()}
-                <div>Best Route:</div>
+                <div>Najlepsza trasa:</div>
                 {this.renderTransportRoute()}
                 <Form.Control as="select" onChange={this.onDropdownSelected}>
                     {this.createSelectItems()}
