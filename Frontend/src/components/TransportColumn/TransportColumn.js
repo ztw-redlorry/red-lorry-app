@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './TransportColumn.module.scss';
 import plus from '../../plus.png';
 import TransportTile from "../../components/TransportTile/TransportTile";
-import classes from "../TransportColumn/TransportColumn.module.scss";
+import classes from ".//TransportColumn.module.scss";
 import TransportInputTile from "../../components/TransportInputTile/TransportInputTile";
 import axios from "axios";
-import OrderTile from "../OrdersColumn/OrdersColumn";
+import OrderTile from "../../components/OrdersColumn/OrdersColumn";
 
 class TransportColumn extends Component{
     constructor(props) {
@@ -46,16 +46,25 @@ class TransportColumn extends Component{
     handleCreateOrderInput = () => {
         this.setState({isInputActive: true});
     };
-    handleCancelOrder = () => {
+    handleCancelTransport = () => {
         console.log("cancel");
         this.setState({isInputActive: false});
+    };
+    handleConfirmTransport = (transport) => {
+        this.setState(state => {
+            const transports = [...state.transports, transport];
+            return {
+                transports,
+                isInputActive: false
+            };
+        });
     };
 
     renderInput = () => {
         const isInputActive = this.state.isInputActive;
         if (isInputActive) {
             return (
-                <TransportInputTile onConfirm={this.handleConfirmOrder} onCancel={() => this.handleCancelOrder()}/>
+                <TransportInputTile onConfirm={this.handleConfirmTransport} onCancel={() => this.handleCancelTransport()}/>
             )
         }
     };
