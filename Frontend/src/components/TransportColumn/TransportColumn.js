@@ -31,6 +31,14 @@ class TransportColumn extends Component{
                 }
             )
     }
+    deleteTransport = (id) => {
+        console.log(id);
+        // const url = 'http://localhost:3000/transports';
+        // axios.delete(url, {data: {id}});
+        // this.setState({
+        //     transports: this.state.transports.filter((element) => element.transportNumber !== id )
+        // });
+    };
     renderTransports = () => {
         const transports = this.state.transports;
         console.log("Transport = " + transports.length);
@@ -39,6 +47,7 @@ class TransportColumn extends Component{
                 transportNumber={transportNumber}
                 transportRoute={transportRoute}
                 handledOrders={handledOrders}
+                onDelete={this.deleteTransport}
             >
             </TransportTile>
         ))

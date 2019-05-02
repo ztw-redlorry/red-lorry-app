@@ -9,6 +9,7 @@ var pool = mysql.createPool({
     database : '28168376_redlorry',
     charset: "utf8",
     timeout  : 60 * 60 * 100000,
+    dateStrings: 'date'
 });
 
 pool.getConnection(function(err) {

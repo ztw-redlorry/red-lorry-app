@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './OrderTile.scss';
 import Button from "react-bootstrap/Button";
+import {Form} from "react-bootstrap";
 
 class OrderTile extends Component {
+
     render() {
         return (
             <div className={'orderTile'}>
@@ -15,6 +17,11 @@ class OrderTile extends Component {
                 <div className={'orderAmount'}>
                     Sztuk: {this.props.amount}
                 </div>
+                <div className={'deadline'}>
+                    {console.log(this.props.deadline)}
+                    Data: {this.props.deadline}
+                </div>
+                <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.orderNumber)}>Delete</Button>
             </div>
         )
     }

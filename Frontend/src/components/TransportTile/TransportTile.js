@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './TransportTile.scss';
+import Button from "react-bootstrap/Button";
 
 class TransportTile extends Component {
 
@@ -14,7 +15,7 @@ class TransportTile extends Component {
     };
     renderHandledOrders = () => {
         const handledOrders = this.props.handledOrders.map((orderName) => (
-            <div>{orderName} </div>
+            <div>{orderName}</div>
         ));
         return (
             <div>{handledOrders}</div>
@@ -37,6 +38,7 @@ class TransportTile extends Component {
                         {this.renderHandledOrders()}
                     </div>
                 </div>
+                <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.transportNumber)}>Delete</Button>
             </div>
         )
     }

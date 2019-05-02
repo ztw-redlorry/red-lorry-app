@@ -37,10 +37,12 @@ class OrdersColumn extends Component {
     handleCreateOrderInput = () => {
         this.setState({isInputActive: true});
     };
+
     handleCancelOrder = () => {
         console.log("cancel");
         this.setState({isInputActive: false});
     };
+
     handleConfirmOrder = (order) => {
         this.setState(state => {
             const orders = [...state.orders, order];
@@ -50,10 +52,21 @@ class OrdersColumn extends Component {
             };
         });
     };
+
+    deleteOrder = (id) => {
+        console.log(id);
+        const url = 'http://localhost:3000/orders';
+
+        axios.delete(url, {data: {id}});
+        this.setState({
+            orders: this.state.orders.filter((element) => element.orderNumber !== id )
+        });
+    };
+
     renderOrders = () => {
         const orders = this.state.orders;
         console.log("Order = " + orders.length);
-        return orders.map(({orderNumber, pointFrom, pointTo, amount}) => (
+        return orders.map(({orderNumber, pointFrom, pointTo, amount, deadline}) => (
             <OrderTile
                 key={orderNumber}
                 id={orderNumber}
@@ -61,6 +74,8 @@ class OrdersColumn extends Component {
                 pointFrom={pointFrom}
                 pointTo={pointTo}
                 amount={amount}
+                deadline={deadline}
+                onDelete={this.deleteOrder}
             >
             </OrderTile>
         ));

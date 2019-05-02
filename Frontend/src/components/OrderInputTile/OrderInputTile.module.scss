@@ -7,9 +7,16 @@
   max-width: 100%;
 
 }
-input {
-  width: 40%;
 
+.deadline {
+  font-size: 12px;
+  width: 100% !important;
+  margin: -1px, 3px, 1px, 0;
+
+  padding-top: 4px;
+}
+input{
+  z-index: 1 !important;
 }
 .orderName {
   font-size: 16px;
@@ -17,4 +24,7 @@ input {
 .orderRoute {
 }
 .orderAmount {
+
+
+
 }

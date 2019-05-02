@@ -10,6 +10,7 @@ class TransportInputTile extends Component {
         super(props);
         this.state = {
             distance: 0,
+            isSelected: false,
             selectedOrder: {},
             transportRoute: [],
             handledOrders: [],
@@ -24,7 +25,8 @@ class TransportInputTile extends Component {
                     console.log(result.data);
                     this.setState({
                         isLoaded: true,
-                        availableOrders: result.data
+                        availableOrders: result.data,
+                        selectedOrder: result.data[0]
                     });
                 },
                 (error) => {
@@ -33,7 +35,7 @@ class TransportInputTile extends Component {
                         error
                     });
                 }
-            )
+            );
 
     }
     getBestRoute = () => {
@@ -61,6 +63,8 @@ class TransportInputTile extends Component {
     };
     renderHandledOrders = () => {
         const handledOrders = this.state.handledOrders;
+        console.log("handledOrders length = " + handledOrders.length);
+
         console.log(handledOrders);
         return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
             <div>{orderNumber}: {pointFrom} - {pointTo} </div>
@@ -68,6 +72,7 @@ class TransportInputTile extends Component {
     };
     createSelectItems() {
         let items = [];
+
         for (let i = 0; i < this.state.availableOrders.length; i++) {
             items.push(<option key={i} value={this.state.availableOrders[i].orderNumber}>{'Zamówienie nr ' + this.state.availableOrders[i].orderNumber}</option>);
             //here I will be creating my options dynamically based on
@@ -83,6 +88,7 @@ class TransportInputTile extends Component {
             console.log("e.target.value: " + e.target.value);
             return obj.orderNumber == e.target.value
         });
+        this.setState({isSelected: true});
         console.log("sel or:" + selectedOrder.orderNumber);
         console.log("selectedOrder before set: ", this.state.selectedOrder);
         this.setState({ selectedOrder: selectedOrder}, () => {
@@ -91,16 +97,31 @@ class TransportInputTile extends Component {
         //here you will see the current selected value of the select input
     };
     handleAddingOrder = () => {
-        this.setState(state => {
-            const selectedOrder = this.state.selectedOrder;
-            const handledOrders = [...state.handledOrders, selectedOrder];
-            const availableOrders = state.availableOrders.filter(order => order !== selectedOrder);
-            return {
-                handledOrders,
-                availableOrders
-            };
-        }, () => this.getBestRoute());
-
+        console.log("Selected Order = ", this.state.selectedOrder.orderNumber);
+        if(this.state.isSelected){
+            this.setState(state => {
+                const selectedOrder = this.state.selectedOrder;
+                const handledOrders = [...state.handledOrders, selectedOrder];
+                const availableOrders = state.availableOrders.filter(order => order !== selectedOrder);
+                return {
+                    handledOrders,
+                    availableOrders
+                };
+            }, () => this.getBestRoute());
+            this.setState({isSelected: false});
+        }
+        else{
+            this.setState(state => {
+                const selectedOrder = this.state.availableOrders[0];
+                const handledOrders = [...state.handledOrders, selectedOrder];
+                const availableOrders = state.availableOrders.filter(order => order !== selectedOrder);
+                return {
+                    handledOrders,
+                    availableOrders
+                };
+            }, () => this.getBestRoute());
+            this.setState({isSelected: false});
+        }
     };
     handleConfirm = () => {
         this.props.onConfirm(this.state);
