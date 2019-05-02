@@ -44,8 +44,20 @@ class TransportInputTile extends Component {
             params: {
                 handledOrders: handledOrders
             }})
-            .then(res => console.log(res))
+            .then(res => {
+                    console.log(res);
+                    this.setState({transportRoute: res.data.points}, () => {
+                        console.log("Generated transport route: ", this.state.transportRoute);
+                    })
+                }
+            )
             .catch(err => console.log(err))
+    };
+    renderTransportRoute = () => {
+        const transportRoute = this.state.transportRoute;
+        return transportRoute.map((routePoint) => (
+            <div>{routePoint.pointName}</div>
+        ))
     };
     renderHandledOrders = () => {
         const handledOrders = this.state.handledOrders;
@@ -87,7 +99,8 @@ class TransportInputTile extends Component {
                 handledOrders,
                 availableOrders
             };
-        });
+        }, () => this.getBestRoute());
+
     };
     handleConfirm = () => {
         this.props.onConfirm(this.state);
@@ -95,7 +108,10 @@ class TransportInputTile extends Component {
     render() {
         return (
             <Form className={classes.orderInputTile}>
+                <div>Handled Orders:</div>
                 {this.renderHandledOrders()}
+                <div>Best Route:</div>
+                {this.renderTransportRoute()}
                 <Form.Control as="select" onChange={this.onDropdownSelected}>
                     {this.createSelectItems()}
                 </Form.Control>

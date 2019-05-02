@@ -6,12 +6,13 @@ var {PythonShell} = require('python-shell');
 var json = require('../testPythonInput.json');
 
 let allMags;
-let ordersToPython = {
-    orders: [],
-    maxload: 100000
-};
+let ordersToPython;
 
 router.get('/', function (request, response) {
+    ordersToPython = {
+        orders: [],
+        maxload: 100000
+    };
     let handledOrders = request.query.handledOrders;
     for (var i = 0; i < handledOrders.length; i++) {
         handledOrders[i] = JSON.parse(handledOrders[i]);
@@ -51,6 +52,7 @@ router.get('/', function (request, response) {
                     bestrt.points[i].pointName = pointName
                 }
                 console.log(bestrt);
+                response.send(bestrt)
             })
 
         }
