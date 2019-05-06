@@ -85,13 +85,13 @@ def calculate(orders,maxload):
             if (action_point['x'] == next_action_point['x'] and action_point['y'] == next_action_point['y']):
                 continue
         best_points.append({'x': action_point['x'], 'y': action_point['y'], 'load': current_load})
-        if (i > 0):
+        if (last_appended_action_point != {}):
             total_distance += math.sqrt((last_appended_action_point['x'] - action_point['x'])**2 + (last_appended_action_point['y'] - action_point['y'])**2)
         last_appended_action_point = action_point
 
     return (best_points,total_distance)
 
 if __name__ == '__main__':
-    (orders,maxload) = load_from_json(argv[1])
+    (orders,maxload) = load_from_json('{ "orders": [ { "x1": 21.018, "y1": 52.2201, "x2": 19.9602, "y2": 50.0664, "load": 100 }, { "x1": 21.018, "y1": 52.2201, "x2": 17.0601, "y2": 51.1114, "load": 10 } ], "maxload": 100000 }')#argv[1])
     (points,distance) = calculate(orders,maxload)
     print(encode_to_json(points,distance))
