@@ -41,7 +41,8 @@ class TransportColumn extends Component{
     };
     renderTransports = () => {
         const transports = this.state.transports;
-        console.log("Transport = " + transports.length);
+        console.log("Transports number: " + transports.length);
+
         return transports.map(({transportNumber, transportRoute, handledOrders}) => (
             <TransportTile
                 transportNumber={transportNumber}
@@ -52,7 +53,7 @@ class TransportColumn extends Component{
             </TransportTile>
         ))
     };
-    handleCreateOrderInput = () => {
+    handleCreateTransportInput = () => {
         this.setState({isInputActive: true});
     };
     handleCancelTransport = () => {
@@ -60,13 +61,15 @@ class TransportColumn extends Component{
         this.setState({isInputActive: false});
     };
     handleConfirmTransport = (transport) => {
+        console.log(transport);
         this.setState(state => {
             const transports = [...state.transports, transport];
             return {
                 transports,
                 isInputActive: false
             };
-        });
+        }, () => {console.log(this.state.transports)});
+        console.log(this.state.transports);
     };
 
     renderInput = () => {
@@ -83,7 +86,7 @@ class TransportColumn extends Component{
                 {/*<TransportTile transportNumber={3} transportRoute={['Katowice', 'Bytom', 'Sosnowiec']} handledOrders={['Zamówienie 1']}/>*/}
                 {this.renderTransports()}
                 {this.renderInput()}
-                <img className={classes.addTransport} src={plus} onClick={this.handleCreateOrderInput}/>
+                <img className={classes.addTransport} src={plus} onClick={this.handleCreateTransportInput}/>
             </div>
         )
     }
