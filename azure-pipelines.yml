@@ -16,6 +16,11 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    npm install jasmine-node
+    jasmine-node
+  displayName: 'jasmine install and test'
+
+- script: |
     npm install
     npm run build
   displayName: 'npm install and build'
