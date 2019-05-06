@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './TransportTile.scss';
 import Button from "react-bootstrap/Button";
+import {Form} from "react-bootstrap";
 
 class TransportTile extends Component {
     constructor(props) {
@@ -18,30 +19,41 @@ class TransportTile extends Component {
             <div>{routeItems}</div>
         );
     };
+
     renderHandledOrders = () => {
-        const handledOrders = this.props.handledOrders.map((orderName) => (
-            <div>{orderName}</div>
+        const handledOrders = this.props.handledOrders;
+        console.log("handledOrders length = " + handledOrders.length);
+        console.log(handledOrders);
+        return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
+            <div>{orderNumber}: {pointFrom} - {pointTo} </div>
         ));
-        return (
-            <div>{handledOrders}</div>
-        );
+    };
+    renderTransportRoute = () => {
+        const transportRoute = this.props.transportRoute;
+        return transportRoute.map((routePoint) => (
+            <div>-{routePoint.pointName}     <span>Załadowanie: {routePoint.load}</span></div>
+        ))
     };
 
     render() {
         return (
             <div className={'transportTile'}>
-                <div className={'transportName'}>
+                <div >
                     Transport <span>{this.props.transportNumber}</span>
                 </div>
-                <div className={'transportDetails'}>
-                    <div className={'transportRoute'}>
-                        Trasa:
-                        {this.renderRoute()}
-                    </div>
-                    <div className={'handledOrders'}>
-                        Zamówienia:
-                        {this.renderHandledOrders()}
-                    </div>
+                <div>
+                    <div>Obsługiwane zamówienia:</div>
+                    {this.renderHandledOrders()}
+                    <div>Najlepsza trasa:</div>
+                    {this.renderTransportRoute()}
+                    {/*<div className={'transportRoute'}>*/}
+                        {/*Trasa:*/}
+                        {/*{this.renderRoute()}*/}
+                    {/*</div>*/}
+                    {/*<div className={'handledOrders'}>*/}
+                        {/*Zamówienia:*/}
+                        {/*{this.renderHandledOrders()}*/}
+                    {/*</div>*/}
                 </div>
                 <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.transportNumber)}>Delete</Button>
             </div>

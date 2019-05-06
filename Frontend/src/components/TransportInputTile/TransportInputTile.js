@@ -139,7 +139,7 @@ class TransportInputTile extends Component {
                 </Form.Control>
                 <Button variant={'light'} onClick={this.handleAddingOrder}>Add Order</Button>
                 {/*<Button type={'submit'} variant={'light'} onClick={this.handleConfirm}>Add Transport</Button>*/}
-                <Button variant={'light'} onClick={this.getBestRoute}>Add Transport</Button>
+                <Button variant={'light'} onClick={this.handleConfirm}>Add Transport</Button>
                 <Button variant={'light'} onClick={() => this.props.onCancel()}>Cancel Transport</Button>
             </Form>
         )
