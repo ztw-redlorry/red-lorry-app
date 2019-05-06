@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install jasmine-node
+    npm install jasmine-node -g
     jasmine-node Backend/spec
   displayName: 'jasmine install and test'
 
