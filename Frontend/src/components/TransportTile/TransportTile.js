@@ -20,8 +20,8 @@ class TransportTile extends Component {
 
     renderHandledOrders = () => {
         const handledOrders = this.props.handledOrders;
-        console.log("handledOrders length = " + handledOrders.length);
-        console.log(handledOrders);
+        //console.log("handledOrders length = " + handledOrders.length);
+        //console.log(handledOrders);
         return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
             <div>{orderNumber}: {pointFrom} - {pointTo} </div>
         ));

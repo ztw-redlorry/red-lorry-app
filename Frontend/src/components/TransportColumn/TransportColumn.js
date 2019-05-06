@@ -57,11 +57,11 @@ class TransportColumn extends Component{
         this.setState({isInputActive: true});
     };
     handleCancelTransport = () => {
-        console.log("cancel");
+        //console.log("cancel");
         this.setState({isInputActive: false});
     };
     handleConfirmTransport = (transport) => {
-        console.log(transport);
+        //console.log(transport);
         this.setState(state => {
             const transports = [...state.transports, transport];
             return {
@@ -69,7 +69,7 @@ class TransportColumn extends Component{
                 isInputActive: false
             };
         }, () => {console.log(this.state.transports)});
-        console.log(this.state.transports);
+        //console.log(this.state.transports);
     };
 
     renderInput = () => {

@@ -11,11 +11,11 @@ import 'leaflet-routing-machine';
 class RouteMap extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Latitude");
-        console.log(this.props.latitude);
     }
 
     componentDidMount() {
+        console.log("Latitude");
+        console.log(this.props.latitude);
         let map = L.map('map');
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

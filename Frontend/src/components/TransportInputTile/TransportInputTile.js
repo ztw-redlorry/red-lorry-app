@@ -22,7 +22,7 @@ class TransportInputTile extends Component {
         axios.get('http://localhost:3000/orders')
             .then(
                 (result) => {
-                    console.log(result.data);
+                    //console.log(result.data);
                     this.setState({
                         isLoaded: true,
                         availableOrders: result.data,
@@ -47,9 +47,9 @@ class TransportInputTile extends Component {
                 handledOrders: handledOrders
             }})
             .then(res => {
-                    console.log(res);
+                    //console.log(res);
                     this.setState({transportRoute: res.data.points}, () => {
-                        console.log("Generated transport route: ", this.state.transportRoute);
+                        //console.log("Generated transport route: ", this.state.transportRoute);
                     })
                 }
             )
@@ -64,9 +64,9 @@ class TransportInputTile extends Component {
 
     renderHandledOrders = () => {
         const handledOrders = this.state.handledOrders;
-        console.log("handledOrders length = " + handledOrders.length);
+        //console.log("handledOrders length = " + handledOrders.length);
 
-        console.log(handledOrders);
+        //console.log(handledOrders);
         return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
             <div>{orderNumber}: {pointFrom} - {pointTo} </div>
         ));
@@ -82,23 +82,23 @@ class TransportInputTile extends Component {
         return items;
     }
     onDropdownSelected = (e) => {
-        console.log("THE VAL", e.target.value);
-        console.log('availableOrders: ' + this.state.availableOrders);
+        //console.log("THE VAL", e.target.value);
+        //console.log('availableOrders: ' + this.state.availableOrders);
         var selectedOrder = this.state.availableOrders.find(obj => {
-            console.log("obj: " + obj.orderNumber);
-            console.log("e.target.value: " + e.target.value);
+            //console.log("obj: " + obj.orderNumber);
+            //console.log("e.target.value: " + e.target.value);
             return obj.orderNumber == e.target.value
         });
         this.setState({isSelected: true});
-        console.log("sel or:" + selectedOrder.orderNumber);
-        console.log("selectedOrder before set: ", this.state.selectedOrder);
+        //console.log("sel or:" + selectedOrder.orderNumber);
+        //console.log("selectedOrder before set: ", this.state.selectedOrder);
         this.setState({ selectedOrder: selectedOrder}, () => {
-            console.log("selectedOrder after set: ", this.state.selectedOrder);
+            //console.log("selectedOrder after set: ", this.state.selectedOrder);
         });
         //here you will see the current selected value of the select input
     };
     handleAddingOrder = () => {
-        console.log("Selected Order = ", this.state.selectedOrder.orderNumber);
+        //console.log("Selected Order = ", this.state.selectedOrder.orderNumber);
         if(this.state.isSelected){
             this.setState(state => {
                 const selectedOrder = this.state.selectedOrder;
