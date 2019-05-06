@@ -11,6 +11,8 @@ import 'leaflet-routing-machine';
 class RouteMap extends React.Component {
     constructor(props) {
         super(props);
+        console.log("Latitude");
+        console.log(this.props.latitude);
     }
 
     componentDidMount() {
@@ -23,6 +25,7 @@ class RouteMap extends React.Component {
         let routeControl = L.Routing.control({
         }).addTo(map);
         routeControl.setWaypoints(this.props.latitude);
+        console.log(this.props.latitude);
     }
 
     render(){

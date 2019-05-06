@@ -6,10 +6,8 @@ import {Form} from "react-bootstrap";
 class TransportTile extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            latitude: this.props.latitude
-        };
     }
+
     renderRoute = () => {
         const route = this.props.transportRoute;
         const routeItems = route.map((city) => (
@@ -34,7 +32,21 @@ class TransportTile extends Component {
             <div>-{routePoint.pointName}     <span>Załadowanie: {routePoint.load}</span></div>
         ))
     };
-
+    showRouteOnMap = () => {
+        const transportRoute = this.props.transportRoute;
+        let latitudeArray = [];
+        for(let i = 0; i < transportRoute.length; i++){
+            latitudeArray.push(
+                {
+                    "title": transportRoute[i].pointName,
+                    "lat": transportRoute[i].x,
+                    "lng": transportRoute[i].y,
+                    "description": '',
+                    "flag": '1'
+                })
+        }
+        this.props.onTransportClick(latitudeArray)
+    };
     render() {
         return (
             <div className={'transportTile'}>
@@ -56,6 +68,7 @@ class TransportTile extends Component {
                     {/*</div>*/}
                 </div>
                 <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.transportNumber)}>Delete</Button>
+                <Button id={'showButton'} variant={'dark'} onClick={() => this.showRouteOnMap()}>Show</Button>
             </div>
         )
     }

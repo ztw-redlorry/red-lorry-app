@@ -4,7 +4,9 @@ import {Container} from 'react-bootstrap'
 
 class MapScreen extends Component {
     constructor(props){
-        super(props)
+        super(props);
+        console.log("Latitude");
+        console.log(this.props.latitude);
     }
     render () {
         return (

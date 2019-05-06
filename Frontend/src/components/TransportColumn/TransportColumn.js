@@ -48,7 +48,7 @@ class TransportColumn extends Component{
                 transportRoute={transportRoute}
                 handledOrders={handledOrders}
                 onDelete={this.deleteTransport}
-                latitude={this.props.latitude}
+                onTransportClick={this.props.onTransportClick}
             >
             </TransportTile>
         ))

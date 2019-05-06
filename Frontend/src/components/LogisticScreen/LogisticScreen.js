@@ -19,7 +19,7 @@ class LogisticScreen extends Component {
               {/*<Col sm={6} className={'title'}>Transporty</Col>*/}
             </div>
             <Col sm={6} fluid style={{paddingLeft: 1, paddingRight: 1}}> <OrderColumn/></Col>
-            <Col sm={6} fluid style={{paddingLeft: 1, paddingRight: 1}}> <TransportColumn latitude={this.props.latitude}/></Col>
+            <Col sm={6} fluid style={{paddingLeft: 1, paddingRight: 1}}> <TransportColumn onTransportClick={this.props.onTransportClick}/></Col>
           </div>
         );
       }
