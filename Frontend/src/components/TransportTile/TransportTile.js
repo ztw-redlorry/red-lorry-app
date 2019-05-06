@@ -3,7 +3,12 @@ import './TransportTile.scss';
 import Button from "react-bootstrap/Button";
 
 class TransportTile extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            latitude: this.props.latitude
+        };
+    }
     renderRoute = () => {
         const route = this.props.transportRoute;
         const routeItems = route.map((city) => (
