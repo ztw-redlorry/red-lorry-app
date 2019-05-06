@@ -61,6 +61,7 @@ class TransportInputTile extends Component {
             <div>-{routePoint.pointName}     <span>Załadowanie: {routePoint.load}</span></div>
         ))
     };
+
     renderHandledOrders = () => {
         const handledOrders = this.state.handledOrders;
         console.log("handledOrders length = " + handledOrders.length);

@@ -5,7 +5,6 @@ import TransportTile from "../../components/TransportTile/TransportTile";
 import classes from ".//TransportColumn.module.scss";
 import TransportInputTile from "../../components/TransportInputTile/TransportInputTile";
 import axios from "axios";
-import OrderTile from "../../components/OrdersColumn/OrdersColumn";
 
 class TransportColumn extends Component{
     constructor(props) {
@@ -48,6 +47,7 @@ class TransportColumn extends Component{
                 transportRoute={transportRoute}
                 handledOrders={handledOrders}
                 onDelete={this.deleteTransport}
+                latitude={this.props.latitude}
             >
             </TransportTile>
         ))
@@ -77,6 +77,7 @@ class TransportColumn extends Component{
             )
         }
     };
+
     render() {
         return (
             <div className={classes.transportColumn}>
@@ -85,7 +86,7 @@ class TransportColumn extends Component{
                 {this.renderInput()}
                 <img className={classes.addTransport} src={plus} onClick={this.handleCreateOrderInput}/>
             </div>
-        )
+        );
     }
 }
 export default TransportColumn;
