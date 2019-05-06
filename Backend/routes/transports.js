@@ -24,6 +24,26 @@ router.get('/',(req, res) => {
         });
     })
 });
+router.post('/', function(request){
+    const transportRoute = request.body.transportRoute;
+    // const deadline = request.body.deadline;
+    console.log('trRt:', transportRoute);
+    let magMiasto = null;
+    connection.query("SELECT magId, magMiasto FROM magazyn;",(err, result) => {
+        if (err) {
+            console.log(err);
+            return err;
+        } else {
+            magMiasto = JSON.parse(JSON.stringify(result));
+            const sql = "INSERT INTO transport(traTermin, traAkceptacja, pojId) VALUES ('2019-01-01',1,1)";
+            console.log(sql);
+            connection.query(sql, function (err) {
+                if (err) throw err;
+                console.log("1 record inserted");
+            });
+        }
+    });
+});
 
 
 router.delete('/',(req, res) => {
@@ -34,6 +54,19 @@ router.delete('/',(req, res) => {
         res.end('Record has been deleted!');
     });
 });
+
+function getId(magMiasto, pointFrom, pointTo){
+    console.log(magMiasto);
+    for (var i = 0; i < magMiasto.length; i++){
+        if (magMiasto[i].magMiasto === pointFrom){
+            magIdFrom = magMiasto[i].magId;
+        }
+        if (magMiasto[i].magMiasto === pointTo){
+            magIdTo = magMiasto[i].magId;
+        }
+    }
+    return [magIdFrom, magIdTo]
+}
 
 function mergeRows(result){
     let mergedResult = [];
