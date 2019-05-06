@@ -39,8 +39,8 @@ class TransportTile extends Component {
             latitudeArray.push(
                 {
                     "title": transportRoute[i].pointName,
-                    "lat": transportRoute[i].x,
-                    "lng": transportRoute[i].y,
+                    "lat": transportRoute[i].y,
+                    "lng": transportRoute[i].x,
                     "description": '',
                     "flag": '1'
                 })

@@ -15,23 +15,23 @@ class TransportColumn extends Component{
         }
     }
     componentDidMount() {
-        axios.get('http://localhost:3000/transports')
-            .then(
-                (result) => {
-                    console.log(result.data);
-                    this.setState({
-                        transports: result.data
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        error
-                    });
-                }
-            )
+        // axios.get('http://localhost:3000/transports')
+        //     .then(
+        //         (result) => {
+        //             //console.log(result.data);
+        //             this.setState({
+        //                 transports: result.data
+        //             });
+        //         },
+        //         (error) => {
+        //             this.setState({
+        //                 error
+        //             });
+        //         }
+        //     )
     }
     deleteTransport = (id) => {
-        console.log(id);
+        //console.log(id);
         // const url = 'http://localhost:3000/transports';
         // axios.delete(url, {data: {id}});
         // this.setState({
@@ -40,7 +40,7 @@ class TransportColumn extends Component{
     };
     renderTransports = () => {
         const transports = this.state.transports;
-        console.log("Transports number: " + transports.length);
+        //console.log("Transports number: " + transports.length);
 
         return transports.map(({transportNumber, transportRoute, handledOrders}) => (
             <TransportTile

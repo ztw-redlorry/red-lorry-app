@@ -13,8 +13,12 @@ class PanelScreen extends Component {
             latitude: []
         };
     }
-    onTransportClick = (latitudeArray) =>{
-        this.setState({latitude: latitudeArray});
+    onTransportClick = (latitudeArray) => {
+        console.log("Latitude");
+        this.setState({latitude: latitudeArray}, () => {
+            console.log(this.state.latitude);
+        });
+        console.log(latitudeArray);
     };
     render () {
         return (

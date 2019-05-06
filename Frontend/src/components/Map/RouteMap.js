@@ -11,22 +11,32 @@ import 'leaflet-routing-machine';
 class RouteMap extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            latitude: props.latitude
+        };
     }
-
-    componentDidMount() {
+    componentWillReceiveProps(nextProps) {
         console.log("Latitude");
-        console.log(this.props.latitude);
-        let map = L.map('map');
+        console.log(nextProps.latitude);
+        this.setState({ latitude: nextProps.latitude }, ()=>{
+            var container = L.DomUtil.get('map');
+            if(container != null){
+                container._leaflet_id = null;
+            }
+            console.log("Latitude");
+            console.log(this.state.latitude);
+            let map = L.map('map');
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
-        let routeControl = L.Routing.control({
-        }).addTo(map);
-        routeControl.setWaypoints(this.props.latitude);
-        console.log(this.props.latitude);
+            let routeControl = L.Routing.control({
+            }).addTo(map);
+            routeControl.setWaypoints(this.state.latitude);
+        });
     }
+
 
     render(){
         return (
