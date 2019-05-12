@@ -29,6 +29,7 @@ steps:
   displayName: 'Run Python scripts testing sequence'
 
 - script: |
+    npm install mysql
     npm install jasmine-node -g
     jasmine-node Backend/spec
   displayName: 'jasmine install and test'
