@@ -24,6 +24,11 @@ steps:
   displayName: 'FlyWay install and migrate database'
 
 - script: |
+    python3 Python/test_bestroute.py
+    python3 Python/test_sortcandidates.py
+  displayName: 'Run Python scripts testing sequence'
+
+- script: |
     npm install jasmine-node -g
     jasmine-node Backend/spec
   displayName: 'jasmine install and test'
