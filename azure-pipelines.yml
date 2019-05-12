@@ -31,7 +31,7 @@ steps:
 - script: |
     npm install mysql
     npm install jasmine-node -g
-    jasmine-node Backend/spec
+    jasmine-node --forceexit Backend/spec
   displayName: 'jasmine install and test'
 
 - script: |
