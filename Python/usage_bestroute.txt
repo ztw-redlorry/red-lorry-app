@@ -1,0 +1,9 @@
+bestroute.py sample usage:
+
+JSON as script parameter:
+
+    python3 bestroute.py {"orders":[{"x1": 1, "y1": 1, "x2": 1, "y2": 4, "load": 100}, {"x1": 1.7, "y1": 0, "x2": 0.2, "y2": -1.4, "load": 200}], "maxload": 1000}
+
+result (JSON):
+
+    {"distance": 7.581650581003023, "points": [{"load": 200, "x": 1.7, "y": 0}, {"load": 0, "x": 0.2, "y": -1.4}, {"load": 100, "x": 1, "y": 1}, {"load": 0, "x": 1, "y": 4}]}

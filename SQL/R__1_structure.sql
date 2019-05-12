@@ -1,0 +1,21 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS punktTrasy;
+DROP TABLE IF EXISTS pojazd;
+DROP TABLE IF EXISTS magazyn;
+DROP TABLE IF EXISTS transport;
+DROP TABLE IF EXISTS zamowienie;
+DROP TABLE IF EXISTS uzytkownik;
+SET FOREIGN_KEY_CHECKS = 1;
+CREATE TABLE punktTrasy (punId int(10) NOT NULL AUTO_INCREMENT, punKolejnosc int(10) NOT NULL, traId int(10) NOT NULL, magId int(10) NOT NULL, PRIMARY KEY (punId)) CHARACTER SET UTF8;
+CREATE TABLE pojazd (pojId int(10) NOT NULL AUTO_INCREMENT, pojLadownosc int(10) NOT NULL, PRIMARY KEY (pojId)) CHARACTER SET UTF8;
+CREATE TABLE magazyn (magId int(10) NOT NULL AUTO_INCREMENT, magMiasto varchar(255) NOT NULL, magLokalizacja varchar(255) NOT NULL, geoDlugosc float NOT NULL, geoSzerokosc float NOT NULL, PRIMARY KEY (magId)) CHARACTER SET UTF8;
+CREATE TABLE transport (traId int(10) NOT NULL AUTO_INCREMENT, traTermin date, traAkceptacja tinyint(1), pojId int(10) NOT NULL, PRIMARY KEY (traId)) CHARACTER SET UTF8;
+CREATE TABLE zamowienie (zamId int(10) NOT NULL AUTO_INCREMENT, zamIloscTowaru int(10) NOT NULL, zamTermin date NOT NULL, traId int(10), magIdStart int(10) NOT NULL, magIdKoniec int(10) NOT NULL, PRIMARY KEY (zamId)) CHARACTER SET UTF8;
+CREATE TABLE uzytkownik (uzyId int(10) NOT NULL AUTO_INCREMENT, uzyLogin varchar(255) NOT NULL, uzyHaslo char(32) NOT NULL, uzyUprawnieniaLogistyka tinyint(1), uzyUprawnieniaAdmin tinyint(1), PRIMARY KEY (uzyId)) CHARACTER SET UTF8;
+ALTER TABLE zamowienie ADD CONSTRAINT FKzamowienie614793 FOREIGN KEY (traId) REFERENCES transport (traId);
+ALTER TABLE transport ADD CONSTRAINT FKtransport919088 FOREIGN KEY (pojId) REFERENCES pojazd (pojId);
+ALTER TABLE zamowienie ADD CONSTRAINT FKzamowienie661107 FOREIGN KEY (magIdStart) REFERENCES magazyn (magId);
+ALTER TABLE zamowienie ADD CONSTRAINT FKzamowienie527852 FOREIGN KEY (magIdKoniec) REFERENCES magazyn (magId);
+ALTER TABLE punktTrasy ADD CONSTRAINT FKpunktTrasy28556 FOREIGN KEY (traId) REFERENCES transport (traId);
+ALTER TABLE punktTrasy ADD CONSTRAINT FKpunktTrasy947573 FOREIGN KEY (magId) REFERENCES magazyn (magId);
+ 

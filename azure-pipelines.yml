@@ -16,6 +16,14 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    echo -e '\n\n--'$(date) >> SQL/R__1_structure.sql
+    echo -e '\n\n--'$(date) >> SQL/R__2_sample_data.sql
+    wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.2.4/flyway-commandline-5.2.4-linux-x64.tar.gz | tar xvz && sudo ln -s `pwd`/flyway-5.2.4/flyway /usr/local/bin    
+    flyway repair -url=jdbc:mysql://serwer1804469.home.pl/28168376_redlorry -user=28168376_redlorry -password=1YD5qFO_ -locations=filesystem:SQL/ -baselineOnMigrate=true
+    flyway migrate -url=jdbc:mysql://serwer1804469.home.pl/28168376_redlorry -user=28168376_redlorry -password=1YD5qFO_ -locations=filesystem:SQL/ -baselineOnMigrate=true
+  displayName: 'FlyWay install and migrate database'
+
+- script: |
     npm install jasmine-node -g
     jasmine-node Backend/spec
   displayName: 'jasmine install and test'
