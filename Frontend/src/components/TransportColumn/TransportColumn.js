@@ -18,7 +18,7 @@ class TransportColumn extends Component{
         // axios.get('http://localhost:3000/transports')
         //     .then(
         //         (result) => {
-        //             //console.log(result.data);
+        //             console.log(result.data);
         //             this.setState({
         //                 transports: result.data
         //             });
@@ -31,7 +31,7 @@ class TransportColumn extends Component{
         //     )
     }
     deleteTransport = (id) => {
-        //console.log(id);
+        // console.log(id);
         // const url = 'http://localhost:3000/transports';
         // axios.delete(url, {data: {id}});
         // this.setState({

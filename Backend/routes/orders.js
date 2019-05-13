@@ -22,7 +22,7 @@ router.post('/', function(request){
     const pointTo = request.body.pointTo;
     const amount = request.body.amount;
     const deadline = request.body.deadline;
-    console.log("Deadline = ", deadline);
+    //console.log("Deadline = ", deadline);
     let magMiasto = null;
     connection.query("SELECT magId, magMiasto FROM magazyn;",(err, result) => {
         if (err) {
@@ -32,7 +32,7 @@ router.post('/', function(request){
             magMiasto = JSON.parse(JSON.stringify(result));
             const magId = getId(magMiasto, pointFrom, pointTo);
             const sql = "INSERT INTO zamowienie(zamIloscTowaru, zamTermin, traId, magIdStart, magIdKoniec) VALUES ("+amount+", '"+deadline+"', '1', "+magId[0]+", "+magId[1]+")";
-            console.log(sql);
+            //console.log(sql);
             connection.query(sql, function (err) {
                 if (err) throw err;
                 console.log("1 record inserted");
@@ -42,7 +42,7 @@ router.post('/', function(request){
 });
 
 router.delete('/',(req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     connection.query('DELETE FROM `zamowienie` WHERE `zamId`=?', [req.body.id], function (error, results, fields) {
         if (error) throw error;
         res.end('Record has been deleted!');
@@ -50,7 +50,7 @@ router.delete('/',(req, res) => {
 });
 
 function getId(magMiasto, pointFrom, pointTo){
-    console.log(magMiasto);
+    //console.log(magMiasto);
     for (var i = 0; i < magMiasto.length; i++){
         if (magMiasto[i].magMiasto === pointFrom){
             magIdFrom = magMiasto[i].magId;
