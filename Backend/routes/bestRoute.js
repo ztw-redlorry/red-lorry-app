@@ -11,7 +11,7 @@ let ordersToPython;
 router.get('/', function (request, response) {
     ordersToPython = {
         orders: [],
-        maxload: 100000
+        maxload: 1000
     };
     let handledOrders = request.query.handledOrders;
     for (var i = 0; i < handledOrders.length; i++) {

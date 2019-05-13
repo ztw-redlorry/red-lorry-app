@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './OrderTile.scss';
 import Button from "react-bootstrap/Button";
-import {Form} from "react-bootstrap";
 
 class OrderTile extends Component {
 

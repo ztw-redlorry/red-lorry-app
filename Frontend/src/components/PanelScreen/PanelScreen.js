@@ -10,15 +10,15 @@ class PanelScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            latitude: []
+            routePointsArray: [],
+
         };
     }
-    onTransportClick = (latitudeArray) => {
+    onTransportClick = (routePointsArray) => {
         console.log("Latitude");
-        this.setState({latitude: latitudeArray}, () => {
-            console.log(this.state.latitude);
+        this.setState({routePointsArray: routePointsArray}, () => {
+            console.log(this.state.routePointsArray);
         });
-        console.log(latitudeArray);
     };
     render () {
         return (
@@ -26,8 +26,8 @@ class PanelScreen extends Component {
                 <Row>
                     <Col sm={5} fluid style={{ paddingLeft: 2, paddingRight: 1 }}><LogisticScreen onTransportClick={this.onTransportClick}/></Col>
                     <Col sm={7} fluid style={{ paddingLeft: 1, paddingRight: 4 }}>
-                        <MapScreen latitude={this.state.latitude}/>
-                        <TransportCapacity />
+                        <MapScreen routePointsArray={this.state.routePointsArray}/>
+                        <TransportCapacity maxLoad={1000} routePointsArray={this.state.routePointsArray}/>
                     </Col>
                 </Row>
             </div>
