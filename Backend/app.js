@@ -10,11 +10,11 @@ var session = require('express-session');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var ordersRouter = require('./routes/orders');
-var transportRouter = require('./routes/transports');
-var loginRouter = require('./routes/login');
-var bestRouteRouter = require('./routes/bestRoute');
+var usersRouter = require('./routes/users').router;
+var ordersRouter = require('./routes/orders').router;
+var transportRouter = require('./routes/transports').router;
+var loginRouter = require('./routes/login').router;
+var bestRouteRouter = require('./routes/bestRoute').router;
 
 var app = express();
 
