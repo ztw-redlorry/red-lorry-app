@@ -13,6 +13,16 @@ class PanelScreen extends Component {
             routePointsArray: [],
             token: null
         };
+    };
+    componentDidMount() {
+        let userToken = localStorage.getItem('usertoken');
+        console.log(userToken);
+        if(userToken===null || userToken===""){
+            this.props.history.push(`/login`);
+        }
+        else{
+            this.setState({token: userToken} );
+        }
     }
     onTransportClick = (routePointsArray) => {
         console.log("Latitude");
