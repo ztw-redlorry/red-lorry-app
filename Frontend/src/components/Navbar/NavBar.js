@@ -5,9 +5,6 @@ import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 
 class NavBar extends React.Component {
-    handleClick = () => {
-        localStorage.setItem('usertoken', "");
-    };
     render() {
         return (
             <Navbar>
@@ -19,7 +16,7 @@ class NavBar extends React.Component {
                     </li>
                     <li className='logoText'>RedLorry</li>
                     <li>
-                        <Link to="/login" onClick={this.handleClick}>
+                        <Link to="/login">
                             <img className={"logOut"} src={require('../../images/logOut.svg')}/>
                         </Link>
                     </li>

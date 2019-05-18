@@ -4,7 +4,6 @@ import styles from './App.scss';
 import NavBar from './components/Navbar/NavBar'
 import PanelScreen from "./components/PanelScreen/PanelScreen";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
-import Register from "./components/Register/Register";
 
 class App extends Component {
     render() {

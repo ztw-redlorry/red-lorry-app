@@ -21,13 +21,13 @@ router.get('/', function (request, response) {
 
     connection.query("SELECT magId, magMiasto, geoDlugosc, geoSzerokosc FROM magazyn;",(err, result) => {
         if(err) {
-            //console.log({"error":true});
+            console.log({"error":true});
         }
         else {
-            //console.log("all mags");
+            console.log("all mags");
             //console.log(result);
             allMags = result;
-            //console.log(allMags);
+            console.log(allMags);
 
             for (var i = 0; i < handledOrders.length; i++) {
                 let pointFromCoords = getCoordinatesByName(handledOrders[i].pointFrom);
@@ -41,17 +41,17 @@ router.get('/', function (request, response) {
                 ordersToPython.orders.push(order);
             }
 
-            //console.log("ordersTopython");
-            //console.log(ordersToPython);
+            console.log("ordersTopython");
+            console.log(ordersToPython);
             let bestrt=0;
             connectWithPython(ordersToPython, result => {
                 bestrt = result;
-                //console.log(bestrt);
+                console.log(bestrt);
                 for (let i = 0; i < bestrt.points.length; i++) {
                     let pointName = getNameByCoordinates([bestrt.points[i].x, bestrt.points[i].y]);
                     bestrt.points[i].pointName = pointName
                 }
-                //console.log(bestrt);
+                console.log(bestrt);
                 response.send(bestrt)
             })
 
@@ -64,19 +64,19 @@ function connectWithPython(ordersToPython, callback) {
         args: JSON.stringify(ordersToPython)
     };
 
-    //console.log(JSON.stringify(ordersToPython));
+    console.log(JSON.stringify(ordersToPython));
     let jsonObj = 0;
     PythonShell.run('bestRoute.py', options, function (err, results) {
         if (err) throw err;
-        //console.log("results");
-        //console.log(results);
+        console.log("results");
+        console.log(results);
         jsonObj = JSON.parse(results[0]);
         callback(jsonObj);
     });
 }
 
 function getCoordinatesByName(cityName) {
-    //console.log('city', cityName);
+    console.log('city', cityName);
     let x;
     let y;
     for (var i = 0; i < allMags.length; i++) {

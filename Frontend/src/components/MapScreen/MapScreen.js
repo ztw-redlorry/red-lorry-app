@@ -17,7 +17,7 @@ class MapScreen extends Component {
     render () {
         return (
             <React.Fragment>
-                {/*<Map routePointsArray={this.state.routePointsArray}/>*/}
+                <Map routePointsArray={this.state.routePointsArray}/>
             </React.Fragment>
         );
     }

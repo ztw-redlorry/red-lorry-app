@@ -20,12 +20,11 @@ class TransportTile extends Component {
 
     renderHandledOrders = () => {
         const handledOrders = this.props.handledOrders;
-        console.log("handledOrders length = " + handledOrders.length);
-        console.log(handledOrders);
-        return handledOrders.map(function (x) {
-            return <div>-Zamówienie {x}</div>;
-            }
-        );
+        //console.log("handledOrders length = " + handledOrders.length);
+        //console.log(handledOrders);
+        return handledOrders.map(({orderNumber: orderNumber, pointFrom, pointTo}) => (
+            <div>{orderNumber}: {pointFrom} - {pointTo} </div>
+        ));
     };
     renderTransportRoute = () => {
         const transportRoute = this.props.transportRoute;
@@ -53,20 +52,21 @@ class TransportTile extends Component {
         return (
             <div className={'transportTile'}>
                 <div >
-                    Transport <span>{this.props.transportNumber}:</span>
+                    Transport <span>{this.props.transportNumber}</span>
                 </div>
                 <div>
-                    {/*<div>Obsługiwane zamówienia:</div>*/}
-                    {/*{this.renderHandledOrders()}*/}
-                    {/*<div>Najlepsza trasa:</div>*/}
-                    {/*{this.renderTransportRoute()}*/}
+                    <div>Obsługiwane zamówienia:</div>
+                    {this.renderHandledOrders()}
+                    <div>Najlepsza trasa:</div>
+                    {this.renderTransportRoute()}
                     {/*<div className={'transportRoute'}>*/}
                         {/*Trasa:*/}
                         {/*{this.renderRoute()}*/}
                     {/*</div>*/}
-                    <div className={'handledOrders'}>
-                        {this.renderHandledOrders()}
-                    </div>
+                    {/*<div className={'handledOrders'}>*/}
+                        {/*Zamówienia:*/}
+                        {/*{this.renderHandledOrders()}*/}
+                    {/*</div>*/}
                 </div>
                 <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.transportNumber)}>Delete</Button>
                 <Button id={'showButton'} variant={'dark'} onClick={() => this.showTransport()}>Show</Button>
