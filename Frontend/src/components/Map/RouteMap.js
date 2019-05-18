@@ -4,7 +4,6 @@ import './RouteMap.scss'
 import L from 'leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet-routing-machine';
 
 
 
@@ -36,7 +35,6 @@ class RouteMap extends React.Component {
             routeControl.setWaypoints(this.state.routePointsArray);
         });
     }
-
 
     render(){
         return (

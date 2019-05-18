@@ -13,16 +13,16 @@ router.post('/', function(request, response) {
                 request.session.loggedin = true;
                 request.session.username = username;
                 response.send('logged in');
-                //response.redirect('/');
             } else {
-                response.send('Incorrect Username and/or Password!');
+                response.status(400).json({ error: 'User does not exist' })
             }
             response.end();
         });
     } else {
-        console.log('dffff');
-        response.send('Please enter Username and Password!');
+        response.status(400).json({ error: 'Please enter Username and Password!' })
         response.end();
     }
 });
+
+
 module.exports = router;

@@ -36,7 +36,6 @@ class TransportInputTile extends Component {
                     });
                 }
             );
-
     }
     getBestRoute = () => {
         const handledOrders = this.state.handledOrders;
@@ -126,6 +125,10 @@ class TransportInputTile extends Component {
     };
     handleConfirm = () => {
         this.props.onConfirm(this.state);
+        const url = 'http://localhost:3000/transports';
+        axios.post(url, this.state)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     };
     render() {
         return (
