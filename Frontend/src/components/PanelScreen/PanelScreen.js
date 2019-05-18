@@ -10,7 +10,7 @@ class PanelScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            latitude: [],
+            routePointsArray: [],
             token: null
         };
     };
