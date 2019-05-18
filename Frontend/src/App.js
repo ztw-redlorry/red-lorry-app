@@ -4,6 +4,7 @@ import './App.scss';
 import NavBar from './components/Navbar/NavBar'
 import PanelScreen from "./components/PanelScreen/PanelScreen";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
+import Register from "./components/Register/Register";
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
                     <NavBar/>
                     <Route exact path="/" component={PanelScreen}/>
                     <Route exact path="/login" component={LoginScreen}/>
+                    <Route exact path="/register" component={Register}/>
                 </div>
             </Router>
         );

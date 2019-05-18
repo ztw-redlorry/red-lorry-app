@@ -17,7 +17,7 @@ class MapScreen extends Component {
     render () {
         return (
             <React.Fragment>
-                <Map latitude={this.state.latitude}/>
+                {/*<Map latitude={this.state.latitude}/>*/}
             </React.Fragment>
         );
     }
