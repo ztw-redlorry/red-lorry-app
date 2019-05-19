@@ -15,6 +15,7 @@ var ordersRouter = require('./routes/orders').router;
 var transportRouter = require('./routes/transports').router;
 var loginRouter = require('./routes/login').router;
 var bestRouteRouter = require('./routes/bestRoute').router;
+var registerRouter = require('./routes/register');
 
 var app = express();
 
