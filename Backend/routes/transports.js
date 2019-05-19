@@ -3,7 +3,8 @@ var router = express.Router();
 var connection = require('./connection');
 var async = require('async');
 
-router.get('/',(req, res) => {
+router.get('/', get);
+function get(req, res){
     let output = [];
     connection.query('SELECT p.traId FROM punktTrasy AS p GROUP BY p.traId;',function(error,results){
         if(error) throw error;
@@ -23,17 +24,18 @@ router.get('/',(req, res) => {
             res.json(output);
         });
     })
-});
+}
 
 
-router.delete('/',(req, res) => {
+router.delete('/', deleteR);
+function deleteR(req, res){
     console.log(req.body);
     connection.query('DELETE FROM `transport` WHERE `traId`=?', [req.body.id], function (error, results, fields) {
         if (error) throw error;
         console.log('Record has been deleted!');
         res.end('Record has been deleted!');
     });
-});
+}
 
 function mergeRows(result){
     let mergedResult = [];
@@ -53,4 +55,4 @@ function mergeRows(result){
     return mergedResult;
 }
 
-module.exports = router;
+module.exports = { router, get, deleteR };

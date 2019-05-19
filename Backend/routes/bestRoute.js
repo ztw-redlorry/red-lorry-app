@@ -8,7 +8,8 @@ var json = require('../testPythonInput.json');
 let allMags;
 let ordersToPython;
 
-router.get('/', function (request, response) {
+router.get('/', get);
+function get(request, response) {
     ordersToPython = {
         orders: [],
         maxload: 1000
@@ -57,7 +58,7 @@ router.get('/', function (request, response) {
 
         }
     });
-});
+}
 
 function connectWithPython(ordersToPython, callback) {
     let options = {
@@ -100,4 +101,4 @@ function getNameByCoordinates(coordinates) {
 
 
 
-module.exports = router;
+module.exports = { router, get };

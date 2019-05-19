@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var connection = require('./connection');
 
-router.get('/',(req, res) => {
+router.get('/', get);
+function get(req, res){
     const SELECT = 'SELECT z.zamId AS orderNumber, ms.magMiasto AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount, z.zamTermin as deadline ';
     const FROM = 'FROM zamowienie AS z ';
     const JOIN = 'JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId; ';
@@ -15,9 +16,11 @@ router.get('/',(req, res) => {
             res.json(result);
         }
     });
-});
+}
 
-router.post('/', function(request){
+router.post('/', post1);
+function post1(request) { post(request,{end: function(msg){}}) }
+function post(request,response){
     const pointFrom = request.body.pointFrom;
     const pointTo = request.body.pointTo;
     const amount = request.body.amount;
@@ -36,18 +39,20 @@ router.post('/', function(request){
             connection.query(sql, function (err) {
                 if (err) throw err;
                 console.log("1 record inserted");
+                response.end("1 record inserted")
             });
         }
     });
-});
+}
 
-router.delete('/',(req, res) => {
+router.delete('/', deleteR);
+function deleteR(req, res){
     console.log(req.body);
     connection.query('DELETE FROM `zamowienie` WHERE `zamId`=?', [req.body.id], function (error, results, fields) {
         if (error) throw error;
         res.end('Record has been deleted!');
     });
-});
+}
 
 function getId(magMiasto, pointFrom, pointTo){
     console.log(magMiasto);
@@ -62,4 +67,4 @@ function getId(magMiasto, pointFrom, pointTo){
     return [magIdFrom, magIdTo]
 }
 
-module.exports = router;
+module.exports = { router, get, post, deleteR };
