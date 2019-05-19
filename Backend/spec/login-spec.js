@@ -13,8 +13,14 @@ function testAsync(username, password, done) {
             username: ''
         }
     },{
-        send: function (msg){
+        send: function(msg){
             result = msg;
+        },
+        status: function(code){
+             return this;
+        },
+        json: function(jsonn){
+            result = jsonn.error
         },
         end: done
     });
@@ -36,7 +42,7 @@ describe("Test Login - incorrect credentials", function () {
         testAsync('aka','akinski',done);
     });
     it("should return login error message", function () {
-        expect(result).toEqual('Incorrect Username and/or Password!');
+        expect(result).toEqual('User does not exist');
     });
 });
 

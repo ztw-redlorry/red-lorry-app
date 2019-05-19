@@ -2,7 +2,18 @@ bestRoute =  require("../routes/bestRoute");
 
 let request = {
     query: {
-        handledOrders: ''//'{"orders":[{"x1": 1, "y1": 1, "x2": 1, "y2": 4, "load": 100}, {"x1": 1.7, "y1": 0, "x2": 0.2, "y2": -1.4, "load": 200}], "maxload": 1000}'
+        handledOrders: [
+            {
+                pointFrom: {0: 1,1: 1},
+                pointTo: {0: 1,1: 4},
+                amount: '200'
+            },
+            {
+                pointFrom: {0: 1.7,1: 0},
+                pointTo: {0: 0.2,1: -1.4},
+                amount: '200'
+            }
+        ]
 
     }
 };
