@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './TransportTile.scss';
 import Button from "react-bootstrap/Button";
 import {Form} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 class TransportTile extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class TransportTile extends Component {
         console.log("handledOrders length = " + handledOrders.length);
         console.log(handledOrders);
         return handledOrders.map(function (x) {
-            return <div>-Zamówienie {x}</div>;
+            return <div>- Nr. {x}</div>;
             }
         );
     };
@@ -52,20 +53,30 @@ class TransportTile extends Component {
         return (
             <div className={'transportTile'}>
                 <div >
-                    Transport <span>{this.props.transportNumber}:</span>
+                    Transport <span>{this.props.transportNumber}</span>
                 </div>
-                <div>
+                <div className={'trasportInfo'}>
+                    <Row>
+                        <Col lg={6}>
+                            <div className={'transportRoute'}>
+                                Trasa:
+                                {this.renderRoute()}
+                            </div>
+                        </Col>
+                        <Col lg={6}>
+                            <div className={'handledOrders'}>
+                                Zamówienia:
+                                {this.renderHandledOrders()}
+                            </div>
+                        </Col>
+                    </Row>
+
                     {/*<div>Obsługiwane zamówienia:</div>*/}
                     {/*{this.renderHandledOrders()}*/}
                     {/*<div>Najlepsza trasa:</div>*/}
                     {/*{this.renderTransportRoute()}*/}
-                    {/*<div className={'transportRoute'}>*/}
-                        {/*Trasa:*/}
-                        {/*{this.renderRoute()}*/}
-                    {/*</div>*/}
-                    <div className={'handledOrders'}>
-                        {this.renderHandledOrders()}
-                    </div>
+
+
                 </div>
                 <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.transportNumber)}>Delete</Button>
                 <Button id={'showButton'} variant={'dark'} onClick={() => this.showRouteOnMap()}>Show</Button>

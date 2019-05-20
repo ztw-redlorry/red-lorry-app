@@ -15,20 +15,20 @@ class TransportColumn extends Component{
         }
     }
     componentDidMount() {
-        // axios.get('http://localhost:3000/transports')
-        //     .then(
-        //         (result) => {
-        //             console.log(result.data);
-        //             this.setState({
-        //                 transports: result.data
-        //             });
-        //         },
-        //         (error) => {
-        //             this.setState({
-        //                 error
-        //             });
-        //         }
-        //     )
+        axios.get('http://localhost:3000/transports')
+            .then(
+                (result) => {
+                    console.log(result.data);
+                    this.setState({
+                        transports: result.data
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        error
+                    });
+                }
+            )
     }
     deleteTransport = (id) => {
         // console.log(id);
