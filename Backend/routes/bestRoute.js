@@ -47,7 +47,7 @@ function get(request, response) {
             let bestrt=0;
             connectWithPython(ordersToPython, result => {
                 bestrt = result;
-                console.log(bestrt);
+                console.log("bestroute: "+bestrt);
                 for (let i = 0; i < bestrt.points.length; i++) {
                     let pointName = getNameByCoordinates([bestrt.points[i].x, bestrt.points[i].y]);
                     bestrt.points[i].pointName = pointName
@@ -65,11 +65,11 @@ function connectWithPython(ordersToPython, callback) {
         args: JSON.stringify(ordersToPython)
     };
 
-    console.log(JSON.stringify(ordersToPython));
+    console.log('options: '+JSON.stringify(ordersToPython));
     let jsonObj = 0;
     PythonShell.run('bestRoute.py', options, function (err, results) {
-        if (err) throw err;
-        console.log("results");
+        if (err) console.log('err:'+err);
+        console.log("results: ");
         console.log(results);
         jsonObj = JSON.parse(results[0]);
         callback(jsonObj);
