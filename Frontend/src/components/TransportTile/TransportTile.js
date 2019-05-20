@@ -34,21 +34,20 @@ class TransportTile extends Component {
             <div>-{routePoint.pointName}     <span>Załadowanie: {routePoint.load}</span></div>
         ))
     };
-    showTransport = () => {
+    showRouteOnMap = () => {
         const transportRoute = this.props.transportRoute;
-        let routePointsArray = [];
+        let latitudeArray = [];
         for(let i = 0; i < transportRoute.length; i++){
-            routePointsArray.push(
+            latitudeArray.push(
                 {
                     "title": transportRoute[i].pointName,
                     "lat": transportRoute[i].y,
                     "lng": transportRoute[i].x,
-                    "load": transportRoute[i].load,
                     "description": '',
                     "flag": '1'
                 })
         }
-        this.props.onTransportClick(routePointsArray)
+        this.props.onTransportClick(latitudeArray)
     };
     render() {
         return (
@@ -80,7 +79,7 @@ class TransportTile extends Component {
 
                 </div>
                 <Button variant={'dark'} onClick={() => this.props.onDelete(this.props.transportNumber)}>Delete</Button>
-                <Button id={'showButton'} variant={'dark'} onClick={() => this.showTransport()}>Show</Button>
+                <Button id={'showButton'} variant={'dark'} onClick={() => this.showRouteOnMap()}>Show</Button>
             </div>
         )
     }

@@ -10,8 +10,7 @@ class PanelScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            routePointsArray: [],
-            admin: false,
+            latitude: [],
             token: null
         };
     };
@@ -21,19 +20,16 @@ class PanelScreen extends Component {
         if(userToken===null || userToken===""){
             this.props.history.push(`/login`);
         }
-        else if(userToken==="admin") {
-            this.setState({admin: true} );
-            this.setState({token: userToken} );
-        }
         else{
             this.setState({token: userToken} );
         }
     }
-    onTransportClick = (routePointsArray) => {
+    onTransportClick = (latitudeArray) => {
         console.log("Latitude");
-        this.setState({routePointsArray: routePointsArray}, () => {
-            console.log(this.state.routePointsArray);
+        this.setState({latitude: latitudeArray}, () => {
+            console.log(this.state.latitude);
         });
+        console.log(latitudeArray);
     };
     render () {
         return (
@@ -41,8 +37,8 @@ class PanelScreen extends Component {
                 <Row>
                     <Col sm={5} fluid style={{ paddingLeft: 2, paddingRight: 1 }}><LogisticScreen onTransportClick={this.onTransportClick}/></Col>
                     <Col sm={7} fluid style={{ paddingLeft: 1, paddingRight: 4 }}>
-                        <MapScreen routePointsArray={this.state.routePointsArray}/>
-                        <TransportCapacity maxLoad={1000} routePointsArray={this.state.routePointsArray}/>
+                        <MapScreen latitude={this.state.latitude}/>
+                        <TransportCapacity />
                     </Col>
                 </Row>
             </div>

@@ -6,18 +6,18 @@ class MapScreen extends Component {
     constructor(props){
         super(props);
         this.state = {
-            routePointsArray: props.routePointsArray
+            latitude: props.latitude
         };
     }
     componentWillReceiveProps(nextProps) {
         console.log("Latitude");
-        console.log(this.props.routePointsArray);
-        this.setState({ routePointsArray: nextProps.routePointsArray });
+        console.log(this.props.latitude);
+        this.setState({ latitude: nextProps.latitude });
     }
     render () {
         return (
             <React.Fragment>
-                <Map routePointsArray={this.state.routePointsArray}/>
+                {/*<Map latitude={this.state.latitude}/>*/}
             </React.Fragment>
         );
     }
