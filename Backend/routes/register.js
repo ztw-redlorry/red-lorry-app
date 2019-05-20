@@ -2,10 +2,6 @@ var express = require('express');
 var router = express.Router();
 var connection = require('./connection');
 const utf8 = require('utf8');
-var express = require('express');
-var router = express.Router();
-var connection = require('./connection');
-const utf8 = require('utf8');
 
 router.post('/', function(request, response) {
     var username = request.body.username;
