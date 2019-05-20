@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import classes from "./Register.module.scss";
+import classes from "./RegisterScreen.module.scss";
 import axios from "axios";
 
-class Register extends Component {
+class RegisterScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -62,4 +62,4 @@ class Register extends Component {
     }
 }
 
-export default Register
+export default RegisterScreen

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import classes from './LoginScreen.module.scss';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 
 class LoginScreen extends Component {
@@ -58,6 +59,9 @@ class LoginScreen extends Component {
                                onChange={this.onChange}
                         />
                         <input type="submit" />
+                        <div className={classes.register}>
+                            <Link to="/register" >Don't have an account? Register now! </Link>
+                        </div>
                     </form>
                 </div>
             </div>

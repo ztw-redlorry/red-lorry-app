@@ -30,6 +30,10 @@ steps:
 
 - script: |
     npm install mysql
+    npm install express
+    npm install python-shell
+    npm install utf8
+    npm install async
     npm install jasmine-node -g
     jasmine-node --forceexit Backend/spec
   displayName: 'jasmine install and test'

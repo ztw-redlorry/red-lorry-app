@@ -4,6 +4,7 @@ import './RouteMap.scss'
 import L from 'leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet-routing-machine';
 
 
 
@@ -11,19 +12,19 @@ class RouteMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            latitude: props.latitude
+            routePointsArray: props.routePointsArray
         };
     }
     componentWillReceiveProps(nextProps) {
         console.log("Latitude");
-        console.log(nextProps.latitude);
-        this.setState({ latitude: nextProps.latitude }, ()=>{
+        console.log(nextProps.routePointsArray);
+        this.setState({ routePointsArray: nextProps.routePointsArray }, ()=>{
             var container = L.DomUtil.get('map');
             if(container != null){
                 container._leaflet_id = null;
             }
             console.log("Latitude");
-            console.log(this.state.latitude);
+            console.log(this.state.routePointsArray);
             let map = L.map('map');
 
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -32,9 +33,10 @@ class RouteMap extends React.Component {
 
             let routeControl = L.Routing.control({
             }).addTo(map);
-            routeControl.setWaypoints(this.state.latitude);
+            routeControl.setWaypoints(this.state.routePointsArray);
         });
     }
+
 
     render(){
         return (
