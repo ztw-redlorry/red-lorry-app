@@ -16,9 +16,12 @@ function get(req, res){
             const sql = SELECT + FROM + JOIN + WHERE;
             connection.query(sql ,function(error,resultsInside){
                 if(error) throw error;
-                output.push(mergeRows(resultsInside));
-                //console.log("resultInside = "+resultsInside[0].magMiasto);
-                callback();
+                connection.query("SELECT traAkceptacja FROM transport WHERE traId = ?", data.traId ,function(error,resultsTransport){
+                    if(error) throw error;
+                    output.push(mergeRows(resultsInside), resultsTransport);
+                    //console.log("resultInside = "+resultsInside[0].magMiasto);
+                    callback();
+                });
             });
         }, function() {
             res.json(output);
@@ -37,7 +40,7 @@ function deleteR(req, res){
     });
 }
 
-function mergeRows(result){
+function mergeRows(result, transport){
     let mergedResult = [];
     //console.log(result);
     for(let i = 0; i<result.length; i++){
@@ -51,7 +54,8 @@ function mergeRows(result){
             mergedResult["handledOrders"].push(result[i]["handledOrders"]);
         }
     }
-    console.log("mergedResult = "+mergedResult["transportRoute"]);
+    mergedResult.push(transport);
+    console.log("mergedResult = "+mergedResult["admin"]);
     return mergedResult;
 }
 

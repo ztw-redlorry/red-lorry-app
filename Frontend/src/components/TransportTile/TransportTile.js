@@ -56,9 +56,9 @@ class TransportTile extends Component {
                 </div>
                 <div>
                     <div>Obsługiwane zamówienia:</div>
-                    {this.renderHandledOrders()}
-                    <div>Najlepsza trasa:</div>
-                    {this.renderTransportRoute()}
+                    {this.renderRoute()}
+                    {/*<div>Najlepsza trasa:</div>*/}
+                    {/*{this.renderTransportRoute()}*/}
                     {/*<div className={'transportRoute'}>*/}
                         {/*Trasa:*/}
                         {/*{this.renderRoute()}*/}

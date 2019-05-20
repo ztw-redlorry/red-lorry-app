@@ -5,6 +5,8 @@ import NavBar from './components/Navbar/NavBar'
 import PanelScreen from "./components/PanelScreen/PanelScreen";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
 import RegisterScreen from "./components/RegisterScreen/RegisterScreen";
+import Admin from "./components/Admin/Admin";
+
 
 class App extends Component {
     render() {

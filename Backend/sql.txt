@@ -36,3 +36,8 @@ COUNT( [ALL|DISTINCT] SELECT z.zamId, z.traId, ms.magMiasto AS miasto1, mk.magMi
 Select Count(*) From ( SELECT z.zamId, z.traId, ms.magMiasto AS miasto1, mk.magMiasto AS miasto2 FROM zamowienie AS z JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId WHERE z.traId IS NOT NULL GROUP BY z.traId ) As Z;
 
 SELECT z.zamId, z.traId, ms.magMiasto AS miasto1, mk.magMiasto AS miasto2 FROM zamowienie AS z JOIN magazyn AS ms ON z.magIdStart = ms.magId JOIN magazyn AS mk ON z.magIdKoniec = mk.magId WHERE z.traId IS NOT NULL
+
+SELECT * FROM transport AS t
+INNER JOIN punktTrasy AS p ON p.traId = t.traId
+INNER JOIN magazyn AS m ON p.magId = m.magId
+GROUP BY t.traId;

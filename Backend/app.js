@@ -12,6 +12,7 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users').router;
 var ordersRouter = require('./routes/orders').router;
+var adminRouter = require('./routes/admin');
 var transportRouter = require('./routes/transports').router;
 var loginRouter = require('./routes/login').router;
 var bestRouteRouter = require('./routes/bestRoute').router;
@@ -49,6 +50,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 app.use('/orders', ordersRouter);
 app.use('/transports', transportRouter);
 app.use('/login', loginRouter);
