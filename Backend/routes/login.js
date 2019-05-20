@@ -8,14 +8,20 @@ function post(request, response) {
     var username = request.body.username;
     var password = request.body.password;
     if (username && password) {
-        console.log('as');
-        console.log(username);
-        console.log(password);
-        connection.query('SELECT * FROM uzytkownik WHERE uzyLogin = ? AND uzyHaslo = ?', [username, password], function(error, results, fields) {
+        connection.query('SELECT uzyUprawnieniaLogistyka, uzyUprawnieniaAdmin FROM uzytkownik WHERE uzyLogin = ? AND uzyHaslo = ?', [username, password], function(error, results, fields) {
             if (results.length > 0) {
-                request.session.loggedin = true;
-                request.session.username = username;
-                response.send('logged in');
+                console.log('dane');
+                const permissions = JSON.parse(JSON.stringify(results));
+                if(permissions.uzyUprawnieniaAdmin === 1){
+                    request.session.loggedin = true;
+                    request.session.username = username;
+                    response.send('admin');
+                }
+                else{
+                    request.session.loggedin = true;
+                    request.session.username = username;
+                    response.send('user');
+                }
             } else {
                 response.status(400).json({ error: 'User does not exist' })
             }

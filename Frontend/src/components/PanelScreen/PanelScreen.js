@@ -11,6 +11,7 @@ class PanelScreen extends Component {
         super(props);
         this.state = {
             routePointsArray: [],
+            admin: false,
             token: null
         };
     };
@@ -19,6 +20,10 @@ class PanelScreen extends Component {
         console.log(userToken);
         if(userToken===null || userToken===""){
             this.props.history.push(`/login`);
+        }
+        else if(userToken==="admin") {
+            this.setState({admin: true} );
+            this.setState({token: userToken} );
         }
         else{
             this.setState({token: userToken} );
