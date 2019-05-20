@@ -16,6 +16,7 @@ var transportRouter = require('./routes/transports').router;
 var loginRouter = require('./routes/login').router;
 var bestRouteRouter = require('./routes/bestRoute').router;
 var registerRouter = require('./routes/register');
+var carsRouter = require('./routes/cars').router;
 
 var app = express();
 
@@ -54,6 +55,7 @@ app.use('/transports', transportRouter);
 app.use('/login', loginRouter);
 app.use('/bestRoute', bestRouteRouter);
 app.use('/register', registerRouter);
+app.use('/cars', carsRouter);
 
 
 

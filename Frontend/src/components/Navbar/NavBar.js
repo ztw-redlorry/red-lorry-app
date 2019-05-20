@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './navbar.scss'
 import {Navbar} from "react-bootstrap"
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import CarsView from "../CarsView/CarsView";
 
 
 class NavBar extends React.Component {
@@ -18,7 +19,9 @@ class NavBar extends React.Component {
                         </Link>
                     </li>
                     <li className='logoText'>RedLorry</li>
+
                     <li>
+                        <CarsView/>
                         <Link to="/login" onClick={this.handleClick}>
                             <img className={"logOut"} src={require('../../images/logOut.svg')}/>
                         </Link>
