@@ -58,48 +58,30 @@ class CarsView extends Component {
 
     render() {
         return (
-            <>
-                <li className={classes.button}>
-                    <Button  variant="secondary" onClick={this.handleShow}>
-                        Launch demo modal
-                    </Button>
-                </li>
+            <div className={classes.container}>
+                <h1>Panel zarządzania samochodami</h1>
+                <h2>Dostępne samochody: </h2>
+                {this.state.cars.map((car) => (
+                    <div className={classes.carWrapper}>
+                        <div className={classes.carId}>ID pojazdu: {car.pojId} </div>
+                        <div> Ładowność pojazdu {car.pojLadownosc}</div>
+                    </div>
+                ))}
+                <br/>
+                <h3>Dodaj nowy samochód: </h3>
+                <div className={classes.newCarInputWrapper}>
+                    <h4>Podaj ładowność: </h4>
+                    <Form className={classes.newCarInputWrapper}>
+                        <Form.Group>
+                            <Form.Control name={'capacity'} onChange={this.onChangeValue} type="text"/>
+                        </Form.Group>
+                        <Button variant="secondary" onClick={this.handleConfirm} type="submit">
+                            Zapisz
+                        </Button>
+                    </Form>
+                </div>
 
-                <Modal size="lg" style={{opacity: 1}} show={this.state.show} onHide={this.handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title><h1>Panel zarządzania samochodami</h1></Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h2>Dostępne samochody: </h2>
-                        {this.state.cars.map((car) => (
-                            <div className={classes.carWrapper}>
-                                <div className={classes.carId}>ID pojazdu: {car.pojId} </div>
-                                <div> Ładowność pojazdu {car.pojLadownosc}</div>
-                            </div>
-                        ))}
-                        <h3>Dodaj nowy samochód: </h3>
-                        <div className={classes.newCarInputWrapper}>
-                            <h4>Podaj ładowność: </h4>
-                            <Form className={classes.newCarInputWrapper}>
-                                <Form.Group>
-                                    <Form.Control name={'capacity'} onChange={this.onChangeValue} type="text"/>
-                                </Form.Group>
-                                <Button variant="secondary" onClick={this.handleConfirm} type="submit">
-                                    Zapisz
-                                </Button>
-                            </Form>
-                        </div>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={this.handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="secondary" onClick={this.handleClose}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
+            </div>
         );
     }
 }
