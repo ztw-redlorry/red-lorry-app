@@ -1,0 +1,17 @@
+.container {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: #C4C4C4 solid 2px;
+}
+.userWrapper {
+  font-size: medium;
+  display: flex;
+  margin: 2px;
+}
+.userElement {
+  flex: 1;}
+.button {
+  float: right;
+}
