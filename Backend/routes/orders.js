@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var connection = require('./connection');
 
+
 router.get('/', get);
 function get(req, res){
     const SELECT = 'SELECT z.zamId AS orderNumber, ms.magMiasto AS pointFrom , mk.magMiasto AS pointTo, z.zamIloscTowaru AS amount, z.zamTermin as deadline ';

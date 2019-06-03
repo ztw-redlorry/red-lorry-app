@@ -6,7 +6,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+const apiOrder = require("./routes/orders2");
+const apiTransport = require("./routes/transports2");
 
+const db = require("./models");
 
 
 var indexRouter = require('./routes/index');
@@ -17,8 +20,12 @@ var loginRouter = require('./routes/login').router;
 var bestRouteRouter = require('./routes/bestRoute').router;
 var registerRouter = require('./routes/register');
 var carsRouter = require('./routes/cars').router;
-
 var app = express();
+
+
+apiOrder(app, db);
+apiTransport(app, db);
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

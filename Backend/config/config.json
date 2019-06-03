@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "28168376_redlorry",
+    "password": "1YD5qFO_",
+    "database": "28168376_redlorry",
+    "host": "serwer1804469.home.pl",
+    "dialect": "mysql"
+  }
+}

@@ -13,7 +13,9 @@ class CarsView extends Component {
         this.state = {
             show: false,
             cars: [],
-            capacity: null
+            capacity: null,
+            token: null,
+            loggedIn: false
         };
     }
 
@@ -29,8 +31,9 @@ class CarsView extends Component {
             this.setState({capacity: event.target.value});
         }
     };
-
     componentDidMount() {
+        this.setState({token: localStorage.getItem('usertoken')} );
+        window.addEventListener('storage', this.localStorageUpdated)
         axios.get('http://localhost:3000/cars')
             .then(
                 (result) => {
@@ -47,6 +50,28 @@ class CarsView extends Component {
             );
 
     }
+    componentWillUnmount(){
+        window.removeEventListener('storage', this.localStorageUpdated)
+
+    };
+    localStorageUpdated(){
+        this.setState({token: localStorage.getItem('usertoken')} );
+    };
+
+    renderButton() {
+
+        if(this.state.token === 'admin'){
+            return (
+            <>
+                <li className={classes.button}>
+                    <Button  variant="secondary" onClick={this.handleShow}>
+                        Pojazdy
+                    </Button>
+                </li>
+            </>
+            )
+        }
+    }
 
     handleClose() {
         this.setState({show: false});
@@ -59,12 +84,7 @@ class CarsView extends Component {
     render() {
         return (
             <>
-                <li className={classes.button}>
-                    <Button  variant="secondary" onClick={this.handleShow}>
-                        Launch demo modal
-                    </Button>
-                </li>
-
+                {this.renderButton()}
                 <Modal size="lg" style={{opacity: 1}} show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title><h1>Panel zarządzania samochodami</h1></Modal.Title>

@@ -64,7 +64,6 @@ function connectWithPython(ordersToPython, callback) {
     let options = {
         args: JSON.stringify(ordersToPython)
     };
-
     console.log('options: '+JSON.stringify(ordersToPython));
     let jsonObj = 0;
     PythonShell.run('bestRoute.py', options, function (err, results) {
