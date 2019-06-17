@@ -9,7 +9,7 @@ import RightsPanel from "../RightsPanel";
 const AdministratorPanel = () => (
     <>
         <CarsView/>
-        
+
         <RightsPanel/>
     </>
 );

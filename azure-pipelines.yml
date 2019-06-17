@@ -39,6 +39,7 @@ steps:
   displayName: 'jasmine install and test'
 
 - script: |
+    cd Backend
     npm install
     npm audit fix
     npm run build
