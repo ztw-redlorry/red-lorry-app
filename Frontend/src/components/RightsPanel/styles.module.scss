@@ -1,21 +1,17 @@
 .container {
   width: 50%;
   margin: 0 auto;
+  margin-top: 10px;
   border-radius: 5px;
   border: #C4C4C4 solid 2px;
 }
-.carWrapper {
+.userWrapper {
   font-size: medium;
   display: flex;
-  margin: auto;
+  margin: 2px;
 }
-.carId {
-  margin-right: 30%;
-}
-.newCarInputWrapper {
-  display: flex;
-}
+.userElement {
+  flex: 1;}
 .button {
-  margin-top: 16px;
   float: right;
 }

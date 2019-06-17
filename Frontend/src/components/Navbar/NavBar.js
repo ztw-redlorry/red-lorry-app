@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import './navbar.scss'
-import {Navbar} from "react-bootstrap"
+import {Navbar, Button} from "react-bootstrap"
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import CarsView from "../CarsView/CarsView";
 
 
 class NavBar extends React.Component {
@@ -21,6 +20,7 @@ class NavBar extends React.Component {
             this.setState({loggedIn: true})
         }
     };
+
     render() {
         return (
             <Navbar>
@@ -37,6 +37,7 @@ class NavBar extends React.Component {
                         <Link to="/login" onClick={this.handleClick}>
                             <img className={"logOut"} src={require('../../images/logOut.svg')}/>
                         </Link>
+
                     </li>
                 </ul>
             </Navbar>

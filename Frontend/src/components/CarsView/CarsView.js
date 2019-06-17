@@ -114,12 +114,10 @@ class CarsView extends Component {
                         <Button variant="secondary" onClick={this.handleClose}>
                             Close
                         </Button>
-                        <Button variant="secondary" onClick={this.handleClose}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
+                    </Form>
+                </div>
+
+            </div>
         );
     }
 }
