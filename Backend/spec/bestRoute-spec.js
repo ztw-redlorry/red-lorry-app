@@ -37,7 +37,7 @@ let expected = {
             x : 17.0601,
             y : 51.1114,
             pointName : "Wrocław" } ]
-}
+};
 
 describe("Test Python integration", function () {
     beforeEach(function (done) {
@@ -48,5 +48,4 @@ describe("Test Python integration", function () {
 
         expect(result).toEqual(expected);
     });
-
 });

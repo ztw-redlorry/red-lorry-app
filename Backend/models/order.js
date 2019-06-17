@@ -28,9 +28,9 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    Order.associate = (models) => {
-        Order.belongsTo(models.order);
-    };
+    // Order.associate = (models) => {
+    //     Order.belongsTo(models.order);
+    // };
 
     return Order;
 };

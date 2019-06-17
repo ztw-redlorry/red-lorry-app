@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
     const Transport = sequelize.define('transport', {
             traId: {
@@ -16,10 +15,6 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-
-    // Order.associate = (models) => {
-    //     Order.belongsTo(models.order);
-    // };
 
     return Transport;
 };
