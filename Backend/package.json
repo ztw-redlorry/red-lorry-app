@@ -21,7 +21,7 @@
     "pug": "^2.0.3",
     "python-shell": "^1.0.7",
     "request": "^2.88.0",
-    "sequelize": "^5.8.7",
+    "sequelize": "^5.15.1",
     "utf8": "^3.0.0"
   }
 }
